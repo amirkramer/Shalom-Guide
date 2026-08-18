@@ -1,0 +1,74 @@
+[
+    {
+        "name": "David Citadel Hotel",
+        "city": "Jerusalem",
+        "type": "Hotel",
+        "stars": 5,
+        "price_from": 1200,
+        "rating": 4.8,
+        "reviews": 3450,
+        "amenities": "Pool, Spa, Gym, Restaurant",
+        "booking_id": "david-citadel-hotel",
+        "description": "Luxury hotel with panoramic views of the Old City walls and Tower of David"
+    },
+    {
+        "name": "Abraham Hostel",
+        "city": "Tel Aviv",
+        "type": "Hostel",
+        "stars": 3,
+        "price_from": 120,
+        "rating": 4.6,
+        "reviews": 5670,
+        "amenities": "WiFi, Kitchen, Rooftop, Tours",
+        "booking_id": "abraham-hostel-tel-aviv",
+        "description": "Social hostel with daily activities, tours, and rooftop bar"
+    },
+    {
+        "name": "Dan Panorama",
+        "city": "Tel Aviv",
+        "type": "Hotel",
+        "stars": 4,
+        "price_from": 650,
+        "rating": 4.5,
+        "reviews": 2890,
+        "amenities": "Pool, Beach access, Restaurant, Gym",
+        "booking_id": "dan-panorama-tel-aviv",
+        "description": "Beachfront hotel on the Tel Aviv promenade with Mediterranean views"
+    },
+    {
+        "name": "Fauzi Azar Inn",
+        "city": "Nazareth",
+        "type": "Guesthouse",
+        "stars": 3,
+        "price_from": 200,
+        "rating": 4.9,
+        "reviews": 1230,
+        "amenities": "WiFi, Breakfast, Garden, Historic building",
+        "booking_id": "fauzi-azar-inn",
+        "description": "200-year-old Arab mansion converted into a charming guesthouse"
+    },
+    {
+        "name": "Beresheet Hotel",
+        "city": "Mitzpe Ramon",
+        "type": "Hotel",
+        "stars": 5,
+        "price_from": 1800,
+        "rating": 4.9,
+        "reviews": 1890,
+        "amenities": "Pool, Spa, Desert view, Restaurant",
+        "booking_id": "beresheet-hotel",
+        "description": "Luxury desert resort on the edge of Ramon Crater with infinity pool"
+    },
+    {
+        "name": "Little House in Bakah",
+        "city": "Jerusalem",
+        "type": "Boutique",
+        "stars": 4,
+        "price_from": 450,
+        "rating": 4.7,
+        "reviews": 980,
+        "amenities": "WiFi, Breakfast, Garden, Shabbat friendly",
+        "booking_id": "little-house-bakah",
+        "description": "Charming boutique hotel in the quiet Bakah neighborhood"
+    }
+]

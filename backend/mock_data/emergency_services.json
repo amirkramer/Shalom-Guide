@@ -1,0 +1,74 @@
+[
+    {
+        "service_name": "Hatzalah",
+        "phone_number": "1221",
+        "icon": "🏍️",
+        "description": "First responders ~90 sec response",
+        "color": "bg-orange-500",
+        "category": "medical",
+        "priority": 1
+    },
+    {
+        "service_name": "Magen David Adom",
+        "phone_number": "101",
+        "icon": "🚑",
+        "description": "Ambulance & hospital",
+        "color": "bg-red-500",
+        "category": "medical",
+        "priority": 2
+    },
+    {
+        "service_name": "Police",
+        "phone_number": "100",
+        "icon": "👮",
+        "description": "Israel Police",
+        "color": "bg-blue-600",
+        "category": "security",
+        "priority": 3
+    },
+    {
+        "service_name": "Fire Department",
+        "phone_number": "102",
+        "icon": "🚒",
+        "description": "Fire & rescue services",
+        "color": "bg-red-700",
+        "category": "emergency",
+        "priority": 4
+    },
+    {
+        "service_name": "Home Front Command",
+        "phone_number": "104",
+        "icon": "🏠",
+        "description": "Rocket alerts & shelters",
+        "color": "bg-gray-700",
+        "category": "security",
+        "priority": 5
+    },
+    {
+        "service_name": "Electric Company",
+        "phone_number": "103",
+        "icon": "⚡",
+        "description": "Power outages & emergencies",
+        "color": "bg-yellow-500",
+        "category": "utility",
+        "priority": 6
+    },
+    {
+        "service_name": "Yad Sarah",
+        "phone_number": "1-800-36-0036",
+        "icon": "♿",
+        "description": "Medical equipment lending & accessibility",
+        "color": "bg-purple-500",
+        "category": "medical",
+        "priority": 7
+    },
+    {
+        "service_name": "ERAN Mental Health",
+        "phone_number": "1201",
+        "icon": "🧠",
+        "description": "24/7 emotional support hotline",
+        "color": "bg-teal-500",
+        "category": "mental_health",
+        "priority": 8
+    }
+]

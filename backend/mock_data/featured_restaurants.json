@@ -1,0 +1,52 @@
+[
+    {
+        "name": "Abu Hassan",
+        "category": "Hummus",
+        "city": "Jaffa",
+        "rating": 4.8,
+        "price_level": 1,
+        "image_url": "https://mgx-backend-cdn.metadl.com/generate/images/1427770/2026-07-15/sqinetqcaiza/gastronomy-israeli-food-market.png",
+        "featured_section": "best_hummus",
+        "sort_order": 1
+    },
+    {
+        "name": "Hummus HaCarmel",
+        "category": "Hummus",
+        "city": "Tel Aviv",
+        "rating": 4.7,
+        "price_level": 1,
+        "image_url": "https://mgx-backend-cdn.metadl.com/generate/images/1427770/2026-07-15/sqinetqcaiza/gastronomy-israeli-food-market.png",
+        "featured_section": "best_hummus",
+        "sort_order": 2
+    },
+    {
+        "name": "Shlomo & Doron",
+        "category": "Hummus",
+        "city": "Tel Aviv",
+        "rating": 4.6,
+        "price_level": 1,
+        "image_url": "https://mgx-backend-cdn.metadl.com/generate/images/1427770/2026-07-15/sqinetqcaiza/gastronomy-israeli-food-market.png",
+        "featured_section": "best_hummus",
+        "sort_order": 3
+    },
+    {
+        "name": "Machneyuda",
+        "category": "Fine Dining",
+        "city": "Jerusalem",
+        "rating": 4.9,
+        "price_level": 3,
+        "image_url": "https://mgx-backend-cdn.metadl.com/generate/images/1427770/2026-07-15/sqinetqcaiza/gastronomy-israeli-food-market.png",
+        "featured_section": "top_rated",
+        "sort_order": 1
+    },
+    {
+        "name": "Miznon",
+        "category": "Street Food",
+        "city": "Tel Aviv",
+        "rating": 4.7,
+        "price_level": 2,
+        "image_url": "https://mgx-backend-cdn.metadl.com/generate/images/1427770/2026-07-15/sqinetqcaiza/gastronomy-israeli-food-market.png",
+        "featured_section": "top_rated",
+        "sort_order": 2
+    }
+]

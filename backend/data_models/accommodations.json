@@ -1,0 +1,48 @@
+{
+    "title": "accommodations",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "name": {
+            "type": "string"
+        },
+        "city": {
+            "type": "string"
+        },
+        "type": {
+            "type": "string"
+        },
+        "stars": {
+            "type": "integer"
+        },
+        "price_from": {
+            "type": "number"
+        },
+        "rating": {
+            "type": "number"
+        },
+        "reviews": {
+            "type": "integer"
+        },
+        "amenities": {
+            "type": "string"
+        },
+        "booking_id": {
+            "type": "string"
+        },
+        "image_url": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "id",
+        "name",
+        "city",
+        "type"
+    ]
+}

@@ -1,0 +1,90 @@
+[
+    {
+        "brand_id": 1,
+        "store_id": 1,
+        "title": "20% Off Dead Sea Collection",
+        "description": "Get 20% off all Dead Sea mineral products",
+        "discount_percent": 20,
+        "coupon_code": "DEADSEA20",
+        "valid_until": "2026-12-31",
+        "is_active": true,
+        "category": "Beauty"
+    },
+    {
+        "brand_id": 3,
+        "store_id": 3,
+        "title": "Buy 2 Get 1 Free",
+        "description": "Buy any 2 Sabon products and get 1 free",
+        "discount_percent": 33,
+        "coupon_code": "SABON3FOR2",
+        "valid_until": "2026-09-30",
+        "is_active": true,
+        "category": "Beauty"
+    },
+    {
+        "brand_id": 6,
+        "store_id": 4,
+        "title": "Summer Sale 30% Off",
+        "description": "30% off all summer collection items",
+        "discount_percent": 30,
+        "coupon_code": "FOXSUMMER",
+        "valid_until": "2026-08-31",
+        "is_active": true,
+        "category": "Fashion"
+    },
+    {
+        "brand_id": 5,
+        "store_id": 5,
+        "title": "New Arrivals 15% Off",
+        "description": "15% discount on all new arrivals",
+        "discount_percent": 15,
+        "coupon_code": "CASTRONEW",
+        "valid_until": "2026-10-15",
+        "is_active": true,
+        "category": "Fashion"
+    },
+    {
+        "brand_id": 7,
+        "store_id": 6,
+        "title": "Tourist Special 25% Off",
+        "description": "Show your passport for 25% off at the factory outlet",
+        "discount_percent": 25,
+        "coupon_code": "TOURIST25",
+        "valid_until": "2026-12-31",
+        "is_active": true,
+        "category": "Shoes"
+    },
+    {
+        "brand_id": 2,
+        "store_id": 7,
+        "title": "Free Flavor Pack",
+        "description": "Get a free flavor pack with any SodaStream machine purchase",
+        "discount_percent": 0,
+        "coupon_code": "FREEFLAVOR",
+        "valid_until": "2026-11-30",
+        "is_active": true,
+        "category": "Home"
+    },
+    {
+        "brand_id": 8,
+        "store_id": 8,
+        "title": "Gift Set 20% Off",
+        "description": "20% off all gift sets - perfect souvenirs",
+        "discount_percent": 20,
+        "coupon_code": "LALINEGIFT",
+        "valid_until": "2026-12-31",
+        "is_active": true,
+        "category": "Beauty"
+    },
+    {
+        "brand_id": 1,
+        "store_id": 2,
+        "title": "Dead Sea Mud Mask Free Sample",
+        "description": "Free mud mask sample with any purchase over ₪100",
+        "discount_percent": 0,
+        "coupon_code": "MUDMASK",
+        "valid_until": "2026-10-31",
+        "is_active": true,
+        "category": "Beauty"
+    }
+]

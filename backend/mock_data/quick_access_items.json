@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "icon": "🚨",
+        "label": "Emergency",
+        "action": "sos",
+        "sort_order": 1
+    },
+    {
+        "id": 2,
+        "icon": "♿",
+        "label": "Yad Sarah",
+        "action": "yadsarah",
+        "sort_order": 2
+    },
+    {
+        "id": 3,
+        "icon": "🏍️",
+        "label": "Hatzalah",
+        "action": "hatzalah",
+        "sort_order": 3
+    },
+    {
+        "id": 4,
+        "icon": "🚑",
+        "label": "MDA",
+        "action": "mda",
+        "sort_order": 4
+    },
+    {
+        "id": 5,
+        "icon": "💱",
+        "label": "Currency",
+        "action": "currency",
+        "sort_order": 5
+    }
+]

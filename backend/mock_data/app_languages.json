@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "code": "en",
+        "flag": "🇺🇸",
+        "name": "English",
+        "sort_order": 1
+    },
+    {
+        "id": 2,
+        "code": "pt",
+        "flag": "🇧🇷",
+        "name": "Português",
+        "sort_order": 2
+    },
+    {
+        "id": 3,
+        "code": "es",
+        "flag": "🇪🇸",
+        "name": "Español",
+        "sort_order": 3
+    },
+    {
+        "id": 4,
+        "code": "ru",
+        "flag": "🇷🇺",
+        "name": "Русский",
+        "sort_order": 4
+    },
+    {
+        "id": 5,
+        "code": "fr",
+        "flag": "🇫🇷",
+        "name": "Français",
+        "sort_order": 5
+    }
+]

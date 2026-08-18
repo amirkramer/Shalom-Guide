@@ -1,0 +1,36 @@
+{
+    "title": "knowledge_articles",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "title": {
+            "type": "string"
+        },
+        "category": {
+            "type": "string"
+        },
+        "content": {
+            "type": "string"
+        },
+        "summary": {
+            "type": "string"
+        },
+        "image_url": {
+            "type": "string"
+        },
+        "tags": {
+            "type": "string"
+        },
+        "read_time": {
+            "type": "integer"
+        }
+    },
+    "required": [
+        "id",
+        "title",
+        "category",
+        "content"
+    ]
+}

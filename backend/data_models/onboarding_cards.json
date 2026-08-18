@@ -1,0 +1,27 @@
+{
+    "title": "onboarding_cards",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "title": {
+            "type": "string"
+        },
+        "icon": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string"
+        },
+        "sort_order": {
+            "type": "integer"
+        }
+    },
+    "required": [
+        "id",
+        "title",
+        "icon",
+        "description"
+    ]
+}

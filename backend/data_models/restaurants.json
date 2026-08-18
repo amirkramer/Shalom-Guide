@@ -1,0 +1,69 @@
+{
+    "title": "restaurants",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "name": {
+            "type": "string"
+        },
+        "cuisine": {
+            "type": "string"
+        },
+        "rating": {
+            "type": "number"
+        },
+        "reviews": {
+            "type": "integer"
+        },
+        "certification": {
+            "type": "string"
+        },
+        "price_level": {
+            "type": "integer"
+        },
+        "distance": {
+            "type": "number"
+        },
+        "is_open": {
+            "type": "boolean"
+        },
+        "closes_at": {
+            "type": "string"
+        },
+        "opens_at": {
+            "type": "string"
+        },
+        "tags": {
+            "type": "string"
+        },
+        "city": {
+            "type": "string"
+        },
+        "kids_menu": {
+            "type": "boolean"
+        },
+        "pet_friendly": {
+            "type": "boolean"
+        },
+        "shabbat_open": {
+            "type": "boolean"
+        },
+        "phone": {
+            "type": "string"
+        },
+        "address": {
+            "type": "string"
+        },
+        "image_url": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "id",
+        "name",
+        "cuisine",
+        "city"
+    ]
+}

@@ -1,0 +1,39 @@
+{
+    "title": "featured_restaurants",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "name": {
+            "type": "string"
+        },
+        "category": {
+            "type": "string"
+        },
+        "city": {
+            "type": "string"
+        },
+        "rating": {
+            "type": "number"
+        },
+        "price_level": {
+            "type": "integer"
+        },
+        "image_url": {
+            "type": "string"
+        },
+        "featured_section": {
+            "type": "string"
+        },
+        "sort_order": {
+            "type": "integer"
+        }
+    },
+    "required": [
+        "id",
+        "name",
+        "category",
+        "city"
+    ]
+}

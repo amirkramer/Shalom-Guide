@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "title": "Explore Israel like a local",
+        "icon": "🗺️",
+        "description": "Discover hidden gems and popular attractions",
+        "sort_order": 1
+    },
+    {
+        "id": 2,
+        "title": "Emergency help in seconds",
+        "icon": "🚨",
+        "description": "Hatzalah & MDA at your fingertips",
+        "sort_order": 2
+    },
+    {
+        "id": 3,
+        "title": "Never miss Shabbat times",
+        "icon": "🕯️",
+        "description": "Candle lighting & Havdalah alerts",
+        "sort_order": 3
+    },
+    {
+        "id": 4,
+        "title": "Your AI travel companion",
+        "icon": "✨",
+        "description": "Personalized itineraries planned for you",
+        "sort_order": 4
+    }
+]

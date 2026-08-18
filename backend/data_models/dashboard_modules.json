@@ -1,0 +1,33 @@
+{
+    "title": "dashboard_modules",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "icon": {
+            "type": "string"
+        },
+        "label": {
+            "type": "string"
+        },
+        "path": {
+            "type": "string"
+        },
+        "subtitle": {
+            "type": "string"
+        },
+        "highlight": {
+            "type": "boolean"
+        },
+        "sort_order": {
+            "type": "integer"
+        }
+    },
+    "required": [
+        "id",
+        "icon",
+        "label",
+        "path"
+    ]
+}

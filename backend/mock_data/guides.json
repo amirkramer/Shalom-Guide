@@ -1,0 +1,67 @@
+[
+    {
+        "name": "David Cohen",
+        "bio": "Certified guide with 15 years of experience in Jerusalem Old City, Western Wall, and historical sites. Specialist in religious history and archaeology.",
+        "photo_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop",
+        "languages": "English, Hebrew, Spanish",
+        "specialties": "Old City, Holy Sites, History, Archaeology",
+        "cities": "Jerusalem",
+        "paypal_email": "david.cohen@example.com",
+        "rating": 4.9,
+        "total_reviews": 127,
+        "is_active": true,
+        "user_id": "1428278"
+    },
+    {
+        "name": "Sarah Levi",
+        "bio": "Art and culture specialist. Explore the vibrant streets, galleries, Bauhaus architecture, and nightlife of Tel Aviv with a passionate local.",
+        "photo_url": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop",
+        "languages": "English, Hebrew, French",
+        "specialties": "Art, Nightlife, Food Tours, Bauhaus Architecture",
+        "cities": "Tel Aviv",
+        "paypal_email": "sarah.levi@example.com",
+        "rating": 4.8,
+        "total_reviews": 95,
+        "is_active": true,
+        "user_id": "1428278"
+    },
+    {
+        "name": "Mohammed Al-Rashid",
+        "bio": "Nature and adventure guide covering the Galilee, Golan Heights, Sea of Galilee, and northern trails. Expert in hiking and local Druze culture.",
+        "photo_url": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop",
+        "languages": "English, Arabic, Hebrew",
+        "specialties": "Hiking, Nature, Archaeology, Druze Culture",
+        "cities": "Norte de Israel",
+        "paypal_email": "mohammed.rashid@example.com",
+        "rating": 4.7,
+        "total_reviews": 83,
+        "is_active": true,
+        "user_id": "1428278"
+    },
+    {
+        "name": "Rachel Ben-Ami",
+        "bio": "Desert expert specializing in Negev, Eilat coral reefs, Dead Sea wellness, and Ramon Crater adventures. Certified diving instructor.",
+        "photo_url": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop",
+        "languages": "English, Hebrew, Russian",
+        "specialties": "Desert, Wellness, Adventure, Diving",
+        "cities": "Sul de Israel",
+        "paypal_email": "rachel.benami@example.com",
+        "rating": 4.8,
+        "total_reviews": 71,
+        "is_active": true,
+        "user_id": "1428278"
+    },
+    {
+        "name": "Yossi Goldberg",
+        "bio": "Religious and historical tours specialist covering Jerusalem holy sites and northern Kabbalah centers. Fluent in Portuguese for Brazilian tourists.",
+        "photo_url": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200&h=200&fit=crop",
+        "languages": "English, Hebrew, Yiddish, Portuguese",
+        "specialties": "Religious Sites, History, Kabbalah, Jewish Heritage",
+        "cities": "Jerusalem, Norte de Israel",
+        "paypal_email": "yossi.goldberg@example.com",
+        "rating": 4.9,
+        "total_reviews": 156,
+        "is_active": true,
+        "user_id": "1428278"
+    }
+]

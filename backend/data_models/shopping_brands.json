@@ -1,0 +1,41 @@
+{
+    "title": "shopping_brands",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "name": {
+            "type": "string"
+        },
+        "category": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string"
+        },
+        "logo_url": {
+            "type": "string"
+        },
+        "website": {
+            "type": "string"
+        },
+        "is_featured": {
+            "type": "boolean"
+        },
+        "made_in_israel": {
+            "type": "boolean"
+        },
+        "badges": {
+            "type": "string"
+        },
+        "city": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "id",
+        "name",
+        "category"
+    ]
+}

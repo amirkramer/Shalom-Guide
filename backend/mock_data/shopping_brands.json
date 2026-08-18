@@ -1,0 +1,92 @@
+[
+    {
+        "name": "Ahava",
+        "category": "Beauty",
+        "description": "Dead Sea mineral-based skincare and beauty products",
+        "is_featured": true,
+        "made_in_israel": true,
+        "badges": "Made in Israel, Dead Sea Minerals",
+        "city": "Tel Aviv"
+    },
+    {
+        "name": "SodaStream",
+        "category": "Home",
+        "description": "Sparkling water makers and flavors",
+        "is_featured": true,
+        "made_in_israel": true,
+        "badges": "Made in Israel, Eco-Friendly",
+        "city": "Tel Aviv"
+    },
+    {
+        "name": "Sabon",
+        "category": "Beauty",
+        "description": "Luxury bath and body products inspired by Israeli botanicals",
+        "is_featured": true,
+        "made_in_israel": true,
+        "badges": "Made in Israel, Natural",
+        "city": "Tel Aviv"
+    },
+    {
+        "name": "Max Brenner",
+        "category": "Food",
+        "description": "Chocolate bar and restaurant chain",
+        "is_featured": false,
+        "made_in_israel": true,
+        "badges": "Made in Israel",
+        "city": "Tel Aviv"
+    },
+    {
+        "name": "Castro",
+        "category": "Fashion",
+        "description": "Israeli fashion brand for men and women",
+        "is_featured": false,
+        "made_in_israel": true,
+        "badges": "Made in Israel, Fashion",
+        "city": "Tel Aviv"
+    },
+    {
+        "name": "Fox",
+        "category": "Fashion",
+        "description": "Popular Israeli clothing and accessories brand",
+        "is_featured": true,
+        "made_in_israel": true,
+        "badges": "Made in Israel, Fashion",
+        "city": "Tel Aviv"
+    },
+    {
+        "name": "Naot",
+        "category": "Shoes",
+        "description": "Handcrafted comfort shoes made in Israel since 1942",
+        "is_featured": false,
+        "made_in_israel": true,
+        "badges": "Made in Israel, Handcrafted",
+        "city": "Haifa"
+    },
+    {
+        "name": "Laline",
+        "category": "Beauty",
+        "description": "Body care products with natural ingredients from the Holy Land",
+        "is_featured": false,
+        "made_in_israel": true,
+        "badges": "Made in Israel, Natural",
+        "city": "Jerusalem"
+    },
+    {
+        "name": "Teva Naot",
+        "category": "Shoes",
+        "description": "Ergonomic sandals and shoes, kibbutz-made",
+        "is_featured": false,
+        "made_in_israel": true,
+        "badges": "Made in Israel, Kibbutz",
+        "city": "Galilee"
+    },
+    {
+        "name": "Tnuva",
+        "category": "Food",
+        "description": "Israel's largest dairy and food company",
+        "is_featured": false,
+        "made_in_israel": true,
+        "badges": "Made in Israel, Dairy",
+        "city": "Tel Aviv"
+    }
+]

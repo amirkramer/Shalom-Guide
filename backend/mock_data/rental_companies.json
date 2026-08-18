@@ -1,0 +1,68 @@
+[
+    {
+        "name": "Eldan",
+        "flag": "🇮🇱",
+        "price_from": 180,
+        "vehicle_type": "Economy",
+        "rating": 4.2,
+        "website_url": "https://www.eldan.co.il",
+        "phone": "*2230",
+        "locations": "Ben Gurion Airport, Tel Aviv, Jerusalem, Haifa, Eilat",
+        "is_local": true
+    },
+    {
+        "name": "Hertz",
+        "flag": "🌍",
+        "price_from": 220,
+        "vehicle_type": "Compact",
+        "rating": 4.0,
+        "website_url": "https://www.hertz.co.il",
+        "phone": "*2278",
+        "locations": "Ben Gurion Airport, Tel Aviv, Jerusalem, Haifa",
+        "is_local": false
+    },
+    {
+        "name": "Avis",
+        "flag": "🌍",
+        "price_from": 210,
+        "vehicle_type": "SUV",
+        "rating": 4.1,
+        "website_url": "https://www.avis.co.il",
+        "phone": "*2847",
+        "locations": "Ben Gurion Airport, Tel Aviv, Jerusalem, Eilat",
+        "is_local": false
+    },
+    {
+        "name": "Europcar",
+        "flag": "🌍",
+        "price_from": 195,
+        "vehicle_type": "Automatic",
+        "rating": 3.9,
+        "website_url": "https://www.europcar.co.il",
+        "phone": "03-9516464",
+        "locations": "Ben Gurion Airport, Tel Aviv, Jerusalem",
+        "is_local": false
+    },
+    {
+        "name": "Shlomo Sixt",
+        "flag": "🇮🇱",
+        "price_from": 170,
+        "vehicle_type": "Economy",
+        "rating": 4.3,
+        "website_url": "https://www.shlomo.co.il",
+        "phone": "*8809",
+        "locations": "Ben Gurion Airport, Tel Aviv, Jerusalem, Haifa, Beer Sheva, Eilat",
+        "is_local": true
+    },
+    {
+        "name": "Budget",
+        "flag": "🌍",
+        "price_from": 200,
+        "vehicle_type": "Compact",
+        "rating": 3.8,
+        "website_url": "https://www.budget.co.il",
+        "phone": "03-9350015",
+        "locations": "Ben Gurion Airport, Tel Aviv, Jerusalem",
+        "is_local": false
+    }
+]

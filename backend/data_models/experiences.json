@@ -1,0 +1,51 @@
+{
+    "title": "experiences",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "title": {
+            "type": "string"
+        },
+        "category": {
+            "type": "string"
+        },
+        "city": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string"
+        },
+        "price": {
+            "type": "number"
+        },
+        "duration": {
+            "type": "string"
+        },
+        "rating": {
+            "type": "number"
+        },
+        "reviews": {
+            "type": "integer"
+        },
+        "provider": {
+            "type": "string"
+        },
+        "image_url": {
+            "type": "string"
+        },
+        "tags": {
+            "type": "string"
+        },
+        "is_active": {
+            "type": "boolean"
+        }
+    },
+    "required": [
+        "id",
+        "title",
+        "category",
+        "city"
+    ]
+}

@@ -1,0 +1,35 @@
+{
+    "title": "emergency_services",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "service_name": {
+            "type": "string"
+        },
+        "phone_number": {
+            "type": "string"
+        },
+        "icon": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string"
+        },
+        "color": {
+            "type": "string"
+        },
+        "category": {
+            "type": "string"
+        },
+        "priority": {
+            "type": "integer"
+        }
+    },
+    "required": [
+        "id",
+        "service_name",
+        "phone_number"
+    ]
+}

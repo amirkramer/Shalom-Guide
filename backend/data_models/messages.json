@@ -1,0 +1,29 @@
+{
+    "title": "messages",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "user_id": {
+            "type": "string"
+        },
+        "booking_id": {
+            "type": "integer"
+        },
+        "sender_role": {
+            "type": "string",
+            "maxLength": 20
+        },
+        "content": {
+            "type": "string",
+            "maxLength": 5000
+        }
+    },
+    "required": [
+        "user_id",
+        "booking_id",
+        "sender_role",
+        "content"
+    ]
+}

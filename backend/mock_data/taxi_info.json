@@ -1,0 +1,34 @@
+[
+    {
+        "distance_range": "1-5",
+        "distance_label": "Short (1-5km)",
+        "price_min": 25,
+        "price_max": 45,
+        "currency": "ILS",
+        "notes": "Flag drop ₪12.10, then ₪1.72/km"
+    },
+    {
+        "distance_range": "5-15",
+        "distance_label": "Medium (5-15km)",
+        "price_min": 45,
+        "price_max": 90,
+        "currency": "ILS",
+        "notes": "Night tariff +25% after 21:00"
+    },
+    {
+        "distance_range": "15-30",
+        "distance_label": "Long (15-30km)",
+        "price_min": 90,
+        "price_max": 160,
+        "currency": "ILS",
+        "notes": "Inter-city trips may have fixed rates"
+    },
+    {
+        "distance_range": "30+",
+        "distance_label": "Very Long (30km+)",
+        "price_min": 160,
+        "price_max": 400,
+        "currency": "ILS",
+        "notes": "Airport transfers: Ben Gurion to Tel Aviv ~₪150, to Jerusalem ~₪300"
+    }
+]

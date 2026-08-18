@@ -1,0 +1,98 @@
+[
+    {
+        "brand_id": 1,
+        "name": "Ahava Flagship Store",
+        "city": "Tel Aviv",
+        "address": "Dizengoff Center, Tel Aviv",
+        "phone": "+972-3-620-2020",
+        "hours": "09:00-21:00",
+        "shabbat_closed": true,
+        "accessible": true,
+        "lat": 32.0753,
+        "lng": 34.7748
+    },
+    {
+        "brand_id": 1,
+        "name": "Ahava Dead Sea",
+        "city": "Dead Sea",
+        "address": "Ein Bokek Beach, Dead Sea",
+        "phone": "+972-8-997-5555",
+        "hours": "08:00-20:00",
+        "shabbat_closed": false,
+        "accessible": true,
+        "lat": 31.2,
+        "lng": 35.36
+    },
+    {
+        "brand_id": 3,
+        "name": "Sabon Mamilla",
+        "city": "Jerusalem",
+        "address": "Mamilla Mall, Jerusalem",
+        "phone": "+972-2-624-1234",
+        "hours": "09:30-22:00",
+        "shabbat_closed": true,
+        "accessible": true,
+        "lat": 31.7767,
+        "lng": 35.2233
+    },
+    {
+        "brand_id": 6,
+        "name": "Fox Dizengoff",
+        "city": "Tel Aviv",
+        "address": "Dizengoff St 50, Tel Aviv",
+        "phone": "+972-3-524-8888",
+        "hours": "09:30-21:30",
+        "shabbat_closed": true,
+        "accessible": true,
+        "lat": 32.078,
+        "lng": 34.774
+    },
+    {
+        "brand_id": 5,
+        "name": "Castro Azrieli",
+        "city": "Tel Aviv",
+        "address": "Azrieli Center, Tel Aviv",
+        "phone": "+972-3-608-1234",
+        "hours": "09:30-22:00",
+        "shabbat_closed": true,
+        "accessible": true,
+        "lat": 32.0742,
+        "lng": 34.7913
+    },
+    {
+        "brand_id": 7,
+        "name": "Naot Factory Outlet",
+        "city": "Haifa",
+        "address": "Kibbutz Neot Mordechai, Upper Galilee",
+        "phone": "+972-4-694-0111",
+        "hours": "08:00-17:00",
+        "shabbat_closed": true,
+        "accessible": true,
+        "lat": 33.22,
+        "lng": 35.58
+    },
+    {
+        "brand_id": 2,
+        "name": "SodaStream Experience Center",
+        "city": "Tel Aviv",
+        "address": "Rothschild Blvd 22, Tel Aviv",
+        "phone": "+972-3-900-1234",
+        "hours": "10:00-20:00",
+        "shabbat_closed": true,
+        "accessible": true,
+        "lat": 32.0636,
+        "lng": 34.7721
+    },
+    {
+        "brand_id": 8,
+        "name": "Laline Mamilla",
+        "city": "Jerusalem",
+        "address": "Mamilla Mall, Jerusalem",
+        "phone": "+972-2-624-5678",
+        "hours": "09:30-22:00",
+        "shabbat_closed": true,
+        "accessible": true,
+        "lat": 31.7768,
+        "lng": 35.2234
+    }
+]

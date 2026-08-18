@@ -1,0 +1,63 @@
+{
+    "title": "tourist_sites",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "name": {
+            "type": "string"
+        },
+        "category": {
+            "type": "string"
+        },
+        "city": {
+            "type": "string"
+        },
+        "region": {
+            "type": "string"
+        },
+        "hours": {
+            "type": "string"
+        },
+        "price": {
+            "type": "number"
+        },
+        "description": {
+            "type": "string"
+        },
+        "audio_guide": {
+            "type": "boolean"
+        },
+        "accessible": {
+            "type": "boolean"
+        },
+        "faith": {
+            "type": "string"
+        },
+        "dress_code": {
+            "type": "string"
+        },
+        "difficulty": {
+            "type": "string"
+        },
+        "duration": {
+            "type": "string"
+        },
+        "highlights": {
+            "type": "string"
+        },
+        "unesco": {
+            "type": "boolean"
+        },
+        "image_url": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "id",
+        "name",
+        "category",
+        "city"
+    ]
+}

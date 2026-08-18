@@ -1,0 +1,27 @@
+{
+    "title": "quick_access_items",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "icon": {
+            "type": "string"
+        },
+        "label": {
+            "type": "string"
+        },
+        "action": {
+            "type": "string"
+        },
+        "sort_order": {
+            "type": "integer"
+        }
+    },
+    "required": [
+        "id",
+        "icon",
+        "label",
+        "action"
+    ]
+}

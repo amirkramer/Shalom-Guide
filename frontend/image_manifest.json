@@ -1,0 +1,37 @@
+{
+  "status": "success",
+  "results": [
+    {
+      "status": "success",
+      "filename": "hero-jerusalem-golden-hour.jpg",
+      "url": "https://mgx-backend-cdn.metadl.com/generate/images/1427770/2026-07-15/sqindwicai2a/hero-jerusalem-golden-hour.png",
+      "path": "https://mgx-backend-cdn.metadl.com/generate/images/1427770/2026-07-15/sqindwicai2a/hero-jerusalem-golden-hour.png",
+      "absolute_path": "https://mgx-backend-cdn.metadl.com/generate/images/1427770/2026-07-15/sqindwicai2a/hero-jerusalem-golden-hour.png"
+    },
+    {
+      "status": "success",
+      "filename": "featured-dead-sea-sunrise.jpg",
+      "url": "https://mgx-backend-cdn.metadl.com/generate/images/1427770/2026-07-15/sqineeycaiyq/featured-dead-sea-sunrise.png",
+      "path": "https://mgx-backend-cdn.metadl.com/generate/images/1427770/2026-07-15/sqineeycaiyq/featured-dead-sea-sunrise.png",
+      "absolute_path": "https://mgx-backend-cdn.metadl.com/generate/images/1427770/2026-07-15/sqineeycaiyq/featured-dead-sea-sunrise.png"
+    },
+    {
+      "status": "success",
+      "filename": "gastronomy-israeli-food-market.jpg",
+      "url": "https://mgx-backend-cdn.metadl.com/generate/images/1427770/2026-07-15/sqinetqcaiza/gastronomy-israeli-food-market.png",
+      "path": "https://mgx-backend-cdn.metadl.com/generate/images/1427770/2026-07-15/sqinetqcaiza/gastronomy-israeli-food-market.png",
+      "absolute_path": "https://mgx-backend-cdn.metadl.com/generate/images/1427770/2026-07-15/sqinetqcaiza/gastronomy-israeli-food-market.png"
+    },
+    {
+      "status": "success",
+      "filename": "tourism-masada-sunrise.jpg",
+      "url": "https://mgx-backend-cdn.metadl.com/generate/images/1427770/2026-07-15/sqinfaicaizq/tourism-masada-sunrise.png",
+      "path": "https://mgx-backend-cdn.metadl.com/generate/images/1427770/2026-07-15/sqinfaicaizq/tourism-masada-sunrise.png",
+      "absolute_path": "https://mgx-backend-cdn.metadl.com/generate/images/1427770/2026-07-15/sqinfaicaizq/tourism-masada-sunrise.png"
+    }
+  ],
+  "success_count": 4,
+  "failed_count": 0,
+  "running_count": 0,
+  "message": "Generated 4/4 images total"
+}

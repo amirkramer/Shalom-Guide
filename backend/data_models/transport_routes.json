@@ -1,0 +1,42 @@
+{
+    "title": "transport_routes",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "route_number": {
+            "type": "string"
+        },
+        "from_city": {
+            "type": "string"
+        },
+        "to_city": {
+            "type": "string"
+        },
+        "departure": {
+            "type": "string"
+        },
+        "duration": {
+            "type": "string"
+        },
+        "stops": {
+            "type": "integer"
+        },
+        "price": {
+            "type": "number"
+        },
+        "operator": {
+            "type": "string"
+        },
+        "type": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "id",
+        "route_number",
+        "from_city",
+        "to_city"
+    ]
+}

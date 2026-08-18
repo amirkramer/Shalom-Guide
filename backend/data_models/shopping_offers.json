@@ -1,0 +1,40 @@
+{
+    "title": "shopping_offers",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "brand_id": {
+            "type": "integer"
+        },
+        "store_id": {
+            "type": "integer"
+        },
+        "title": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string"
+        },
+        "discount_percent": {
+            "type": "integer"
+        },
+        "coupon_code": {
+            "type": "string"
+        },
+        "valid_until": {
+            "type": "string"
+        },
+        "is_active": {
+            "type": "boolean"
+        },
+        "category": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "id",
+        "title"
+    ]
+}

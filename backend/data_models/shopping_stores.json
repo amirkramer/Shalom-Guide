@@ -1,0 +1,44 @@
+{
+    "title": "shopping_stores",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "brand_id": {
+            "type": "integer"
+        },
+        "name": {
+            "type": "string"
+        },
+        "city": {
+            "type": "string"
+        },
+        "address": {
+            "type": "string"
+        },
+        "phone": {
+            "type": "string"
+        },
+        "hours": {
+            "type": "string"
+        },
+        "shabbat_closed": {
+            "type": "boolean"
+        },
+        "accessible": {
+            "type": "boolean"
+        },
+        "lat": {
+            "type": "number"
+        },
+        "lng": {
+            "type": "number"
+        }
+    },
+    "required": [
+        "id",
+        "name",
+        "city"
+    ]
+}

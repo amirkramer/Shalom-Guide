@@ -1,0 +1,90 @@
+[
+    {
+        "route_number": "480",
+        "from_city": "Jerusalem",
+        "to_city": "Tel Aviv",
+        "departure": "08:30",
+        "duration": "55 min",
+        "stops": 3,
+        "price": 16,
+        "operator": "Egged",
+        "type": "bus"
+    },
+    {
+        "route_number": "947",
+        "from_city": "Tel Aviv",
+        "to_city": "Haifa",
+        "departure": "09:15",
+        "duration": "1h 20min",
+        "stops": 5,
+        "price": 37.5,
+        "operator": "Egged",
+        "type": "bus"
+    },
+    {
+        "route_number": "405",
+        "from_city": "Jerusalem",
+        "to_city": "Beer Sheva",
+        "departure": "10:00",
+        "duration": "1h 30min",
+        "stops": 4,
+        "price": 28,
+        "operator": "Egged",
+        "type": "bus"
+    },
+    {
+        "route_number": "IL-100",
+        "from_city": "Tel Aviv",
+        "to_city": "Jerusalem",
+        "departure": "07:00",
+        "duration": "28 min",
+        "stops": 0,
+        "price": 22,
+        "operator": "Israel Railways",
+        "type": "train"
+    },
+    {
+        "route_number": "IL-200",
+        "from_city": "Tel Aviv",
+        "to_city": "Haifa",
+        "departure": "08:00",
+        "duration": "55 min",
+        "stops": 2,
+        "price": 35,
+        "operator": "Israel Railways",
+        "type": "train"
+    },
+    {
+        "route_number": "IL-300",
+        "from_city": "Tel Aviv",
+        "to_city": "Beer Sheva",
+        "departure": "09:30",
+        "duration": "1h 10min",
+        "stops": 3,
+        "price": 30,
+        "operator": "Israel Railways",
+        "type": "train"
+    },
+    {
+        "route_number": "420",
+        "from_city": "Jerusalem",
+        "to_city": "Eilat",
+        "departure": "07:00",
+        "duration": "4h 30min",
+        "stops": 6,
+        "price": 72,
+        "operator": "Egged",
+        "type": "bus"
+    },
+    {
+        "route_number": "823",
+        "from_city": "Haifa",
+        "to_city": "Tiberias",
+        "departure": "10:30",
+        "duration": "45 min",
+        "stops": 3,
+        "price": 21,
+        "operator": "Egged",
+        "type": "bus"
+    }
+]

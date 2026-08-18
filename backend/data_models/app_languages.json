@@ -1,0 +1,26 @@
+{
+    "title": "app_languages",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "code": {
+            "type": "string"
+        },
+        "flag": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "sort_order": {
+            "type": "integer"
+        }
+    },
+    "required": [
+        "id",
+        "code",
+        "name"
+    ]
+}

@@ -1,0 +1,37 @@
+{
+    "title": "shabbat_times",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "city": {
+            "type": "string"
+        },
+        "parasha": {
+            "type": "string"
+        },
+        "candle_lighting": {
+            "type": "string"
+        },
+        "havdalah": {
+            "type": "string"
+        },
+        "date_friday": {
+            "type": "string"
+        },
+        "hebrew_date": {
+            "type": "string"
+        },
+        "is_current": {
+            "type": "boolean"
+        }
+    },
+    "required": [
+        "id",
+        "city",
+        "parasha",
+        "candle_lighting",
+        "havdalah"
+    ]
+}

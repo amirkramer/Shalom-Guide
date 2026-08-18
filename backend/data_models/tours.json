@@ -1,0 +1,50 @@
+{
+    "title": "tours",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "user_id": {
+            "type": "string"
+        },
+        "guide_id": {
+            "type": "integer"
+        },
+        "title": {
+            "type": "string",
+            "maxLength": 300
+        },
+        "description": {
+            "type": "string",
+            "maxLength": 2000
+        },
+        "city": {
+            "type": "string",
+            "maxLength": 100
+        },
+        "duration_hours": {
+            "type": "number"
+        },
+        "price_ils": {
+            "type": "number"
+        },
+        "max_participants": {
+            "type": "integer",
+            "default": 10
+        },
+        "is_active": {
+            "type": "boolean",
+            "default": true
+        }
+    },
+    "required": [
+        "user_id",
+        "guide_id",
+        "title",
+        "description",
+        "city",
+        "duration_hours",
+        "price_ils"
+    ]
+}

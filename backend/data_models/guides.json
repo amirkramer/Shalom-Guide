@@ -1,0 +1,60 @@
+{
+    "title": "guides",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "user_id": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string",
+            "maxLength": 200
+        },
+        "bio": {
+            "type": "string",
+            "maxLength": 2000
+        },
+        "photo_url": {
+            "type": "string",
+            "maxLength": 500
+        },
+        "languages": {
+            "type": "string",
+            "maxLength": 500
+        },
+        "specialties": {
+            "type": "string",
+            "maxLength": 500
+        },
+        "cities": {
+            "type": "string",
+            "maxLength": 500
+        },
+        "paypal_email": {
+            "type": "string",
+            "maxLength": 200
+        },
+        "rating": {
+            "type": "number",
+            "default": 0
+        },
+        "total_reviews": {
+            "type": "integer",
+            "default": 0
+        },
+        "is_active": {
+            "type": "boolean",
+            "default": true
+        }
+    },
+    "required": [
+        "user_id",
+        "name",
+        "bio",
+        "languages",
+        "cities",
+        "paypal_email"
+    ]
+}

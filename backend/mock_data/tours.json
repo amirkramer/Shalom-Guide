@@ -1,0 +1,112 @@
+[
+    {
+        "guide_id": 1,
+        "title": "Jerusalem Old City Complete Tour",
+        "description": "Walk through the four quarters of the Old City, visit the Western Wall, Church of the Holy Sepulchre, and Temple Mount area. Includes hidden gems and local stories.",
+        "city": "Jerusalem",
+        "duration_hours": 4.0,
+        "price_ils": 350,
+        "max_participants": 8,
+        "is_active": true,
+        "user_id": "1428278"
+    },
+    {
+        "guide_id": 1,
+        "title": "Mount of Olives & City of David",
+        "description": "Explore ancient Jerusalem from the Mount of Olives panoramic viewpoint through the City of David archaeological site and Hezekiah's Tunnel.",
+        "city": "Jerusalem",
+        "duration_hours": 3.5,
+        "price_ils": 300,
+        "max_participants": 10,
+        "is_active": true,
+        "user_id": "1428278"
+    },
+    {
+        "guide_id": 2,
+        "title": "Tel Aviv Street Art & Bauhaus Tour",
+        "description": "Discover Tel Aviv's vibrant street art scene in Florentin, then explore the UNESCO White City Bauhaus architecture. Includes café stops.",
+        "city": "Tel Aviv",
+        "duration_hours": 3.0,
+        "price_ils": 250,
+        "max_participants": 12,
+        "is_active": true,
+        "user_id": "1428278"
+    },
+    {
+        "guide_id": 2,
+        "title": "Tel Aviv Food & Market Experience",
+        "description": "Taste your way through Carmel Market, Levinsky spice market, and hidden local restaurants. Vegetarian options available.",
+        "city": "Tel Aviv",
+        "duration_hours": 3.5,
+        "price_ils": 280,
+        "max_participants": 8,
+        "is_active": true,
+        "user_id": "1428278"
+    },
+    {
+        "guide_id": 3,
+        "title": "Galilee Hiking & Waterfalls",
+        "description": "Full-day hike through the lush Galilee region visiting hidden waterfalls, ancient ruins, and panoramic viewpoints over the Sea of Galilee.",
+        "city": "Norte de Israel",
+        "duration_hours": 7.0,
+        "price_ils": 450,
+        "max_participants": 6,
+        "is_active": true,
+        "user_id": "1428278"
+    },
+    {
+        "guide_id": 3,
+        "title": "Golan Heights & Druze Villages",
+        "description": "Explore the Golan Heights with visits to Druze villages, local cuisine tasting, ancient Gamla fortress, and stunning viewpoints.",
+        "city": "Norte de Israel",
+        "duration_hours": 8.0,
+        "price_ils": 500,
+        "max_participants": 8,
+        "is_active": true,
+        "user_id": "1428278"
+    },
+    {
+        "guide_id": 4,
+        "title": "Dead Sea & Masada Sunrise",
+        "description": "Early morning climb of Masada fortress at sunrise, followed by floating in the Dead Sea and Ein Gedi nature reserve visit.",
+        "city": "Sul de Israel",
+        "duration_hours": 8.0,
+        "price_ils": 480,
+        "max_participants": 10,
+        "is_active": true,
+        "user_id": "1428278"
+    },
+    {
+        "guide_id": 4,
+        "title": "Negev Desert & Ramon Crater",
+        "description": "Adventure day in the Negev desert: Ramon Crater rim walk, desert wildlife spotting, Bedouin tea experience, and stargazing.",
+        "city": "Sul de Israel",
+        "duration_hours": 9.0,
+        "price_ils": 520,
+        "max_participants": 6,
+        "is_active": true,
+        "user_id": "1428278"
+    },
+    {
+        "guide_id": 5,
+        "title": "Jerusalem Holy Sites Deep Dive",
+        "description": "In-depth exploration of Jerusalem's sacred sites for all three Abrahamic religions. Includes underground tunnels and rooftop views.",
+        "city": "Jerusalem",
+        "duration_hours": 5.0,
+        "price_ils": 400,
+        "max_participants": 6,
+        "is_active": true,
+        "user_id": "1428278"
+    },
+    {
+        "guide_id": 5,
+        "title": "Safed Kabbalah & Mysticism Tour",
+        "description": "Journey to the mystical city of Safed (Tzfat) in the north. Visit ancient synagogues, artist quarter, and learn about Jewish mysticism.",
+        "city": "Norte de Israel",
+        "duration_hours": 6.0,
+        "price_ils": 420,
+        "max_participants": 8,
+        "is_active": true,
+        "user_id": "1428278"
+    }
+]

@@ -1,0 +1,66 @@
+[
+    {
+        "title": "History of Jerusalem",
+        "category": "History",
+        "content": "Jerusalem is one of the oldest cities in the world, with a history spanning over 5,000 years. It is sacred to Judaism, Christianity, and Islam. The Old City contains the Western Wall, Church of the Holy Sepulchre, and Al-Aqsa Mosque within its ancient walls.",
+        "summary": "5,000 years of history in the holy city",
+        "tags": "history, jerusalem, religion",
+        "read_time": 8
+    },
+    {
+        "title": "Understanding Shabbat",
+        "category": "Culture",
+        "content": "Shabbat (Sabbath) begins Friday at sunset and ends Saturday night. Most businesses close, public transport stops in many cities. Restaurants may close or operate with limited service. Plan ahead for Shabbat, especially in Jerusalem.",
+        "summary": "Essential guide to the Jewish day of rest",
+        "tags": "shabbat, culture, religion, tips",
+        "read_time": 5
+    },
+    {
+        "title": "Israeli Cuisine Guide",
+        "category": "Food",
+        "content": "Israeli cuisine is a melting pot of flavors from Middle Eastern, Mediterranean, and global influences. Must-try dishes include hummus, falafel, shakshuka, sabich, and fresh salads. Street food culture is vibrant in cities like Tel Aviv and Jerusalem.",
+        "summary": "A culinary journey through Israel's diverse flavors",
+        "tags": "food, culture, cuisine",
+        "read_time": 6
+    },
+    {
+        "title": "Dead Sea: Nature's Wonder",
+        "category": "Nature",
+        "content": "The Dead Sea is the lowest point on Earth at 430m below sea level. Its mineral-rich waters and mud have therapeutic properties. The sea is shrinking rapidly, making it a must-visit destination. Float effortlessly due to the extreme salinity.",
+        "summary": "The world's saltiest lake and natural spa",
+        "tags": "nature, dead sea, wellness",
+        "read_time": 5
+    },
+    {
+        "title": "Getting Around Israel",
+        "category": "Transport",
+        "content": "Israel has efficient public transport including buses (Egged, Dan), trains (Israel Railways), and shared taxis (sherut). The Rav-Kav card works across all systems. Ride-sharing apps like Gett and Yango are popular. On Shabbat, most public transport stops.",
+        "summary": "Complete guide to Israeli transportation",
+        "tags": "transport, tips, practical",
+        "read_time": 7
+    },
+    {
+        "title": "Safety Tips for Tourists",
+        "category": "Safety",
+        "content": "Israel is generally safe for tourists. Be aware of your surroundings, follow local news, and know emergency numbers (Police: 100, Ambulance: 101). Download the Home Front Command app for rocket alerts. Most tourist areas have security presence.",
+        "summary": "Stay safe during your visit to Israel",
+        "tags": "safety, emergency, tips",
+        "read_time": 4
+    },
+    {
+        "title": "The Negev Desert",
+        "category": "Nature",
+        "content": "The Negev covers over half of Israel's land area. Highlights include Ramon Crater (the world's largest erosion crater), Bedouin culture, ancient Nabatean cities, and stunning stargazing. Best visited October-April for comfortable temperatures.",
+        "summary": "Exploring Israel's vast southern wilderness",
+        "tags": "nature, desert, adventure",
+        "read_time": 6
+    },
+    {
+        "title": "Tel Aviv: The White City",
+        "category": "Architecture",
+        "content": "Tel Aviv has the largest collection of Bauhaus/International Style buildings in the world, earning UNESCO World Heritage status. Over 4,000 buildings from the 1930s-40s line the boulevards. The White City walking tour covers key examples.",
+        "summary": "UNESCO's Bauhaus architectural treasure",
+        "tags": "architecture, tel aviv, culture",
+        "read_time": 5
+    }
+]

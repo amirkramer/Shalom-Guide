@@ -1,0 +1,41 @@
+{
+    "title": "rental_companies",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "name": {
+            "type": "string"
+        },
+        "flag": {
+            "type": "string"
+        },
+        "price_from": {
+            "type": "number"
+        },
+        "vehicle_type": {
+            "type": "string"
+        },
+        "rating": {
+            "type": "number"
+        },
+        "website_url": {
+            "type": "string"
+        },
+        "phone": {
+            "type": "string"
+        },
+        "locations": {
+            "type": "string"
+        },
+        "is_local": {
+            "type": "boolean"
+        }
+    },
+    "required": [
+        "id",
+        "name",
+        "price_from"
+    ]
+}
