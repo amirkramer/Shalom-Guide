@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { createClient } from '@metagptx/web-sdk';
+import axios from 'axios';
 import AppLayout from '@/components/layout/AppLayout';
 import { ArrowLeft, Star, MapPin, Globe, Clock, Users, CreditCard } from 'lucide-react';
-
-const client = createClient();
+import { useAuth } from '@/contexts/AuthContext';
+import { authHeader } from '@/lib/authStorage';
+import { getAPIBaseURL } from '@/lib/config';
 
 interface Guide {
   id: number;
@@ -37,30 +38,16 @@ export default function GuideProfile() {
   const [bookingTour, setBookingTour] = useState<Tour | null>(null);
   const [bookingDate, setBookingDate] = useState('');
   const [isBooking, setIsBooking] = useState(false);
-  const [user, setUser] = useState<any>(null);
+  const { user } = useAuth();
 
   useEffect(() => {
     loadProfile();
-    checkAuth();
   }, [id]);
-
-  const checkAuth = async () => {
-    try {
-      const res = await client.auth.me();
-      if (res?.data) setUser(res.data);
-    } catch {
-      // Not logged in - user will be prompted on booking
-    }
-  };
 
   const loadProfile = async () => {
     setLoading(true);
     try {
-      const response = await client.apiCall.invoke({
-        url: `/api/v1/guide/profile/${id}`,
-        method: 'GET',
-        data: {},
-      });
+      const response = await axios.get(`${getAPIBaseURL()}/api/v1/guide/profile/${id}`);
       setGuide(response.data?.guide || null);
       setTours(response.data?.tours || []);
     } catch (error) {
@@ -72,7 +59,7 @@ export default function GuideProfile() {
 
   const handleBookTour = async (tour: Tour) => {
     if (!user) {
-      client.auth.toLogin();
+      navigate(`/login?from=/hire-guide/profile/${id}`);
       return;
     }
     setBookingTour(tour);
@@ -82,19 +69,22 @@ export default function GuideProfile() {
     if (!bookingTour || !bookingDate) return;
     setIsBooking(true);
     try {
-      const response = await client.apiCall.invoke({
-        url: '/api/v1/payment/create_payment_session',
-        method: 'POST',
-        data: {
+      const response = await axios.post(
+        `${getAPIBaseURL()}/api/v1/payment/create_payment_session`,
+        {
           tour_id: bookingTour.id,
           booking_date: bookingDate,
           success_url: '/payment-success',
           cancel_url: '/hire-guide',
         },
-      });
-      client.utils.openUrl(response.data.url);
+        // The backend builds success_url/cancel_url from the App-Host header
+        // (see routers/payments.py) rather than the body fields above — without
+        // it, frontend_host is None and Stripe rejects the resulting URL.
+        { headers: { ...authHeader(), 'App-Host': window.location.origin } }
+      );
+      window.location.href = response.data.url;
     } catch (error: any) {
-      alert(error?.data?.detail || 'Failed to start checkout');
+      alert(error?.response?.data?.detail || 'Failed to start checkout');
     } finally {
       setIsBooking(false);
     }

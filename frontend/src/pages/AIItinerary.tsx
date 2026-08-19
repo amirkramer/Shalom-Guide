@@ -2,9 +2,10 @@ import { useState, useRef, useEffect } from 'react';
 import AppLayout from '@/components/layout/AppLayout';
 import { ArrowLeft, Send, Bot, User, Loader2, Sparkles } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { createClient } from '@metagptx/web-sdk';
-
-const client = createClient();
+import axios from 'axios';
+import { useAuth } from '@/contexts/AuthContext';
+import { authHeader } from '@/lib/authStorage';
+import { getAPIBaseURL } from '@/lib/config';
 
 interface ChatMessage {
   role: 'user' | 'assistant';
@@ -13,21 +14,12 @@ interface ChatMessage {
 
 export default function AIItinerary() {
   const navigate = useNavigate();
+  const { user, loading: authChecking } = useAuth();
+  const isAuthenticated = Boolean(user);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [authChecking, setAuthChecking] = useState(true);
   const chatEndRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    client.auth.me()
-      .then((res) => {
-        if (res?.data) setIsAuthenticated(true);
-      })
-      .catch(() => {})
-      .finally(() => setAuthChecking(false));
-  }, []);
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -37,7 +29,7 @@ export default function AIItinerary() {
     if (!content.trim() || isLoading) return;
 
     if (!isAuthenticated) {
-      client.auth.toLogin();
+      navigate('/login?from=/ai-itinerary');
       return;
     }
 
@@ -48,15 +40,11 @@ export default function AIItinerary() {
     setIsLoading(true);
 
     try {
-      const response = await client.apiCall.invoke({
-        url: '/api/v1/itinerary/chat',
-        method: 'POST',
-        data: {
-          messages: updatedMessages,
-          preferences: {},
-        },
-        options: { timeout: 600_000 },
-      });
+      const response = await axios.post(
+        `${getAPIBaseURL()}/api/v1/itinerary/chat`,
+        { messages: updatedMessages, preferences: {} },
+        { headers: authHeader(), timeout: 600_000 }
+      );
 
       const assistantMessage: ChatMessage = {
         role: 'assistant',
@@ -64,7 +52,7 @@ export default function AIItinerary() {
       };
       setMessages([...updatedMessages, assistantMessage]);
     } catch (e: any) {
-      const errorMsg = e?.data?.detail || e?.response?.data?.detail || e?.message || 'Failed to get response';
+      const errorMsg = e?.response?.data?.detail || e?.message || 'Failed to get response';
       setMessages([
         ...updatedMessages,
         { role: 'assistant', content: `⚠️ ${errorMsg}\n\nPlease try again.` },

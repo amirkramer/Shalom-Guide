@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { createClient } from '@metagptx/web-sdk';
+import axios from 'axios';
 import AppLayout from '@/components/layout/AppLayout';
 import { ArrowLeft, Send } from 'lucide-react';
-
-const client = createClient();
+import { useAuth } from '@/contexts/AuthContext';
+import { authHeader } from '@/lib/authStorage';
+import { getAPIBaseURL } from '@/lib/config';
 
 interface Message {
   id: number;
@@ -17,6 +18,7 @@ interface Message {
 export default function BookingChat() {
   const { bookingId } = useParams();
   const navigate = useNavigate();
+  const { user, loading: authChecking } = useAuth();
   const [messages, setMessages] = useState<Message[]>([]);
   const [newMessage, setNewMessage] = useState('');
   const [sending, setSending] = useState(false);
@@ -24,33 +26,23 @@ export default function BookingChat() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    checkAuthAndLoad();
-  }, [bookingId]);
+    if (authChecking) return;
+    if (!user) {
+      navigate(`/login?from=/hire-guide/chat/${bookingId}`);
+      return;
+    }
+    loadMessages();
+  }, [bookingId, authChecking, user]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  const checkAuthAndLoad = async () => {
-    try {
-      const res = await client.auth.me();
-      if (!res?.data) {
-        client.auth.toLogin();
-        return;
-      }
-      loadMessages();
-    } catch {
-      client.auth.toLogin();
-    }
-  };
-
   const loadMessages = async () => {
     setLoading(true);
     try {
-      const response = await client.apiCall.invoke({
-        url: `/api/v1/guide/messages/${bookingId}`,
-        method: 'GET',
-        data: {},
+      const response = await axios.get(`${getAPIBaseURL()}/api/v1/guide/messages/${bookingId}`, {
+        headers: authHeader(),
       });
       setMessages(response.data?.items || []);
     } catch (error) {
@@ -64,18 +56,15 @@ export default function BookingChat() {
     if (!newMessage.trim() || sending) return;
     setSending(true);
     try {
-      const response = await client.apiCall.invoke({
-        url: '/api/v1/guide/messages/send',
-        method: 'POST',
-        data: {
-          booking_id: parseInt(bookingId || '0'),
-          content: newMessage.trim(),
-        },
-      });
+      const response = await axios.post(
+        `${getAPIBaseURL()}/api/v1/guide/messages/send`,
+        { booking_id: parseInt(bookingId || '0'), content: newMessage.trim() },
+        { headers: authHeader() }
+      );
       setMessages((prev) => [...prev, response.data]);
       setNewMessage('');
     } catch (error: any) {
-      alert(error?.data?.detail || 'Failed to send message');
+      alert(error?.response?.data?.detail || 'Failed to send message');
     } finally {
       setSending(false);
     }

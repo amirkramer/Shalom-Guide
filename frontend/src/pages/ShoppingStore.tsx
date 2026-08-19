@@ -4,6 +4,7 @@ import { ArrowLeft, MapPin, Phone, Globe, Clock, Shield, Navigation, Heart, Shar
 import { useNavigate, useParams } from 'react-router-dom';
 import { api } from '@/lib/api';
 import { isFavorited, toggleFavorite, isInItinerary, addToItinerary, shareOrCopyLink } from '@/lib/savedItems';
+import { getBrandUrl, hasAwinProgram } from '@/lib/affiliateLinks';
 
 interface Store {
   id: number;
@@ -29,6 +30,7 @@ interface Store {
 interface Brand {
   id: number;
   name: string;
+  slug: string;
   short_description: string;
   category_ids: string;
   israeli_brand: boolean;
@@ -267,7 +269,7 @@ export default function ShoppingStore() {
               onClick={() => setShowWebModal(true)}
               className="w-full bg-white text-[#003F87] py-3 rounded-xl font-body font-semibold text-sm flex items-center justify-center gap-2 border border-[#003F87]/20 active:scale-95 transition-transform"
             >
-              <Globe size={14} /> Visit Website
+              <Globe size={14} /> Visit Website{brand && hasAwinProgram(brand.slug) ? ' 💰' : ''}
             </button>
           )}
         </div>
@@ -324,13 +326,13 @@ export default function ShoppingStore() {
             <div className="flex-1 min-w-0">
               <p className="text-xs font-body font-semibold text-[#1A1A2E] truncate">{store.name}</p>
               <p className="text-[9px] font-body text-[#1A1A2E]/40 truncate flex items-center gap-1">
-                🔒 {store.website_url}
+                🔒 {brand ? getBrandUrl(brand.slug, store.website_url) : store.website_url}
               </p>
             </div>
           </div>
           <div className="flex-1 relative">
             <iframe
-              src={store.website_url}
+              src={brand ? getBrandUrl(brand.slug, store.website_url) : store.website_url}
               className="w-full h-full border-0"
               title={`${store.name} website`}
               sandbox="allow-same-origin allow-scripts allow-forms allow-popups"

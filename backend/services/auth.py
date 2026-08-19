@@ -4,9 +4,12 @@ import time
 from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, Optional, Tuple
 
+import uuid
+
 from core.auth import create_access_token
 from core.config import settings
 from core.database import db_manager
+from core.passwords import hash_password, verify_password
 from models.auth import OIDCState, User
 from sqlalchemy import delete, select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -14,9 +17,47 @@ from sqlalchemy.ext.asyncio import AsyncSession
 logger = logging.getLogger(__name__)
 
 
+class EmailAlreadyRegisteredError(Exception):
+    pass
+
+
+class InvalidCredentialsError(Exception):
+    pass
+
+
 class AuthService:
     def __init__(self, db: AsyncSession):
         self.db = db
+
+    async def register_local_user(self, email: str, password: str, name: Optional[str] = None) -> User:
+        """Create a new email/password account. Raises EmailAlreadyRegisteredError if taken."""
+        existing = await self.db.execute(select(User).where(User.email == email))
+        if existing.scalar_one_or_none():
+            raise EmailAlreadyRegisteredError(email)
+
+        user = User(
+            id=f"local:{uuid.uuid4()}",
+            email=email,
+            name=name,
+            password_hash=hash_password(password),
+            last_login=datetime.now(timezone.utc),
+        )
+        self.db.add(user)
+        await self.db.commit()
+        await self.db.refresh(user)
+        return user
+
+    async def authenticate_local_user(self, email: str, password: str) -> User:
+        """Verify email/password credentials. Raises InvalidCredentialsError if they don't match."""
+        result = await self.db.execute(select(User).where(User.email == email))
+        user = result.scalar_one_or_none()
+        if not user or not user.password_hash or not verify_password(password, user.password_hash):
+            raise InvalidCredentialsError()
+
+        user.last_login = datetime.now(timezone.utc)
+        await self.db.commit()
+        await self.db.refresh(user)
+        return user
 
     async def get_or_create_user(self, platform_sub: str, email: str, name: Optional[str] = None) -> User:
         """Get existing user or create new one."""

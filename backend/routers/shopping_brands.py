@@ -21,26 +21,44 @@ router = APIRouter(prefix="/api/v1/entities/shopping_brands", tags=["shopping_br
 class Shopping_brandsData(BaseModel):
     """Entity data schema (for create/update)"""
     name: str
-    category: str
+    slug: str = None
     description: str = None
-    logo_url: str = None
-    website: str = None
-    is_featured: bool = None
+    short_description: str = None
+    category_ids: str = None
+    style_tags: str = None
+    price_level: int = None
+    israeli_brand: bool = None
     made_in_israel: bool = None
-    badges: str = None
+    verification_status: str = None
+    sustainability_tags: str = None
+    website_url: str = None
+    online_store_url: str = None
+    instagram_url: str = None
+    is_featured: bool = None
+    sponsored: bool = None
+    logo_url: str = None
     city: str = None
 
 
 class Shopping_brandsUpdateData(BaseModel):
     """Update entity data (partial updates allowed)"""
     name: Optional[str] = None
-    category: Optional[str] = None
+    slug: Optional[str] = None
     description: Optional[str] = None
-    logo_url: Optional[str] = None
-    website: Optional[str] = None
-    is_featured: Optional[bool] = None
+    short_description: Optional[str] = None
+    category_ids: Optional[str] = None
+    style_tags: Optional[str] = None
+    price_level: Optional[int] = None
+    israeli_brand: Optional[bool] = None
     made_in_israel: Optional[bool] = None
-    badges: Optional[str] = None
+    verification_status: Optional[str] = None
+    sustainability_tags: Optional[str] = None
+    website_url: Optional[str] = None
+    online_store_url: Optional[str] = None
+    instagram_url: Optional[str] = None
+    is_featured: Optional[bool] = None
+    sponsored: Optional[bool] = None
+    logo_url: Optional[str] = None
     city: Optional[str] = None
 
 
@@ -48,13 +66,22 @@ class Shopping_brandsResponse(BaseModel):
     """Entity response schema"""
     id: int
     name: str
-    category: str
+    slug: Optional[str] = None
     description: Optional[str] = None
-    logo_url: Optional[str] = None
-    website: Optional[str] = None
-    is_featured: Optional[bool] = None
+    short_description: Optional[str] = None
+    category_ids: Optional[str] = None
+    style_tags: Optional[str] = None
+    price_level: Optional[int] = None
+    israeli_brand: Optional[bool] = None
     made_in_israel: Optional[bool] = None
-    badges: Optional[str] = None
+    verification_status: Optional[str] = None
+    sustainability_tags: Optional[str] = None
+    website_url: Optional[str] = None
+    online_store_url: Optional[str] = None
+    instagram_url: Optional[str] = None
+    is_featured: Optional[bool] = None
+    sponsored: Optional[bool] = None
+    logo_url: Optional[str] = None
     city: Optional[str] = None
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None

@@ -5,21 +5,14 @@ import React, {
   useEffect,
   ReactNode,
 } from 'react';
-import { authApi } from '../lib/auth';
-
-interface User {
-  id: string;
-  email: string;
-  name?: string;
-  role: string;
-  last_login?: string;
-}
+import { authApi, AuthUser } from '../lib/auth';
 
 interface AuthContextType {
-  user: User | null;
+  user: AuthUser | null;
   loading: boolean;
   error: string | null;
-  login: () => Promise<void>;
+  login: (email: string, password: string) => Promise<void>;
+  register: (email: string, password: string, name?: string) => Promise<void>;
   logout: () => Promise<void>;
   refetch: () => Promise<void>;
   isAdmin: boolean;
@@ -40,7 +33,7 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<AuthUser | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -58,22 +51,22 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
-  const login = async () => {
-    try {
-      setError(null);
-      await authApi.login();
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Login failed');
-    }
+  const login = async (email: string, password: string) => {
+    setError(null);
+    const userData = await authApi.login(email, password);
+    setUser(userData);
+  };
+
+  const register = async (email: string, password: string, name?: string) => {
+    setError(null);
+    const userData = await authApi.register(email, password, name);
+    setUser(userData);
   };
 
   const logout = async () => {
-    try {
-      setError(null);
-      await authApi.logout();
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Logout failed');
-    }
+    setError(null);
+    await authApi.logout();
+    setUser(null);
   };
 
   useEffect(() => {
@@ -85,6 +78,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     loading,
     error,
     login,
+    register,
     logout,
     refetch: checkAuthStatus,
     isAdmin: user?.role === 'admin',

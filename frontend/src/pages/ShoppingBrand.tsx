@@ -4,6 +4,7 @@ import { ArrowLeft, ExternalLink, MapPin, Shield, Tag, Heart, Share2, Globe, Loa
 import { useNavigate, useParams } from 'react-router-dom';
 import { api } from '@/lib/api';
 import { isFavorited, toggleFavorite, isInItinerary, addToItinerary, shareOrCopyLink } from '@/lib/savedItems';
+import { getBrandUrl, hasAwinProgram } from '@/lib/affiliateLinks';
 
 interface Brand {
   id: number;
@@ -181,18 +182,18 @@ export default function ShoppingBrand() {
         <div className="flex gap-2 mb-3">
           {brand.website_url && (
             <button
-              onClick={() => { setWebViewUrl(brand.website_url!); setWebViewTitle('Website'); }}
+              onClick={() => { setWebViewUrl(getBrandUrl(brand.slug, brand.website_url!)); setWebViewTitle('Website'); }}
               className="flex-1 bg-[#003F87] text-white text-xs py-2.5 rounded-xl font-body font-medium flex items-center justify-center gap-1.5 active:scale-95 transition-transform"
             >
-              <Globe size={12} /> Website
+              <Globe size={12} /> Website{hasAwinProgram(brand.slug) ? ' 💰' : ''}
             </button>
           )}
           {brand.online_store_url && (
             <button
-              onClick={() => { setWebViewUrl(brand.online_store_url!); setWebViewTitle('Shop Online'); }}
+              onClick={() => { setWebViewUrl(getBrandUrl(brand.slug, brand.online_store_url!)); setWebViewTitle('Shop Online'); }}
               className="flex-1 bg-[#C8A96E] text-white text-xs py-2.5 rounded-xl font-body font-medium flex items-center justify-center gap-1.5 active:scale-95 transition-transform"
             >
-              <ExternalLink size={12} /> Shop Online
+              <ExternalLink size={12} /> Shop Online{hasAwinProgram(brand.slug) ? ' 💰' : ''}
             </button>
           )}
         </div>

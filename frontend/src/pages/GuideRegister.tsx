@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createClient } from '@metagptx/web-sdk';
+import axios from 'axios';
 import AppLayout from '@/components/layout/AppLayout';
 import { ArrowLeft, Camera, Check } from 'lucide-react';
-
-const client = createClient();
+import { useAuth } from '@/contexts/AuthContext';
+import { authHeader } from '@/lib/authStorage';
+import { getAPIBaseURL } from '@/lib/config';
 
 const CITY_OPTIONS = ['Jerusalem', 'Tel Aviv', 'Haifa', 'Dead Sea', 'Negev', 'Galilee', 'Eilat', 'Safed', 'Tiberias', 'Golan Heights'];
 const LANGUAGE_OPTIONS = ['English', 'Hebrew', 'Arabic', 'Spanish', 'French', 'Portuguese', 'Russian', 'German', 'Italian', 'Chinese', 'Japanese', 'Yiddish'];
@@ -12,7 +13,7 @@ const SPECIALTY_OPTIONS = ['Jewish History', 'Christian Sites', 'Food Tours', 'N
 
 export default function GuideRegister() {
   const navigate = useNavigate();
-  const [user, setUser] = useState<any>(null);
+  const { user, loading: authChecking } = useAuth();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
@@ -24,21 +25,10 @@ export default function GuideRegister() {
   const [selectedSpecialties, setSelectedSpecialties] = useState<string[]>([]);
 
   useEffect(() => {
-    checkAuth();
-  }, []);
-
-  const checkAuth = async () => {
-    try {
-      const res = await client.auth.me();
-      if (res?.data) {
-        setUser(res.data);
-      } else {
-        client.auth.toLogin();
-      }
-    } catch {
-      client.auth.toLogin();
+    if (!authChecking && !user) {
+      navigate('/login?from=/hire-guide/register');
     }
-  };
+  }, [authChecking, user]);
 
   const toggleItem = (item: string, list: string[], setList: (v: string[]) => void) => {
     if (list.includes(item)) {
@@ -56,8 +46,9 @@ export default function GuideRegister() {
 
     setLoading(true);
     try {
-      await client.entities.guides.create({
-        data: {
+      await axios.post(
+        `${getAPIBaseURL()}/api/v1/entities/guides`,
+        {
           name,
           bio,
           paypal_email: paypalEmail,
@@ -69,10 +60,11 @@ export default function GuideRegister() {
           total_reviews: 0,
           is_active: true,
         },
-      });
+        { headers: authHeader() }
+      );
       setSuccess(true);
     } catch (error: any) {
-      alert(error?.data?.detail || 'Failed to register. Please try again.');
+      alert(error?.response?.data?.detail || 'Failed to register. Please try again.');
     } finally {
       setLoading(false);
     }

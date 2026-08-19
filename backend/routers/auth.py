@@ -21,11 +21,14 @@ from fastapi import APIRouter, Depends, HTTPException, Request, status
 from fastapi.responses import RedirectResponse
 from models.auth import User
 from schemas.auth import (
+    AuthTokenResponse,
+    LoginRequest,
     PlatformTokenExchangeRequest,
+    RegisterRequest,
     TokenExchangeResponse,
     UserResponse,
 )
-from services.auth import AuthService
+from services.auth import AuthService, EmailAlreadyRegisteredError, InvalidCredentialsError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 router = APIRouter(prefix="/api/v1/auth", tags=["authentication"])
@@ -312,6 +315,32 @@ async def exchange_platform_token(
 async def get_current_user_info(current_user: UserResponse = Depends(get_current_user)):
     """Get current user info."""
     return current_user
+
+
+@router.post("/register", response_model=AuthTokenResponse, status_code=status.HTTP_201_CREATED)
+async def register(data: RegisterRequest, db: AsyncSession = Depends(get_db)):
+    """Create a local email/password account and return an access token for it."""
+    auth_service = AuthService(db)
+    try:
+        user = await auth_service.register_local_user(email=data.email, password=data.password, name=data.name)
+    except EmailAlreadyRegisteredError:
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="An account with this email already exists")
+
+    token, _, _ = await auth_service.issue_app_token(user=user)
+    return AuthTokenResponse(token=token, user=UserResponse.model_validate(user))
+
+
+@router.post("/local-login", response_model=AuthTokenResponse)
+async def local_login(data: LoginRequest, db: AsyncSession = Depends(get_db)):
+    """Log in with email/password and return an access token."""
+    auth_service = AuthService(db)
+    try:
+        user = await auth_service.authenticate_local_user(email=data.email, password=data.password)
+    except InvalidCredentialsError:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Incorrect email or password")
+
+    token, _, _ = await auth_service.issue_app_token(user=user)
+    return AuthTokenResponse(token=token, user=UserResponse.model_validate(user))
 
 
 @router.get("/logout")

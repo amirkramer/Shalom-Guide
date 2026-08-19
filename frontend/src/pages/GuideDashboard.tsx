@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createClient } from '@metagptx/web-sdk';
+import axios from 'axios';
 import AppLayout from '@/components/layout/AppLayout';
 import { ArrowLeft, Plus, Calendar, DollarSign, MessageCircle, Trash2 } from 'lucide-react';
-
-const client = createClient();
+import { useAuth } from '@/contexts/AuthContext';
+import { authHeader } from '@/lib/authStorage';
+import { getAPIBaseURL } from '@/lib/config';
 
 interface Booking {
   id: number;
@@ -31,7 +32,7 @@ interface Tour {
 
 export default function GuideDashboard() {
   const navigate = useNavigate();
-  const [user, setUser] = useState<any>(null);
+  const { user, loading: authChecking } = useAuth();
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [tours, setTours] = useState<Tour[]>([]);
   const [activeTab, setActiveTab] = useState<'bookings' | 'tours'>('bookings');
@@ -48,29 +49,22 @@ export default function GuideDashboard() {
   const [addingTour, setAddingTour] = useState(false);
 
   useEffect(() => {
-    checkAuth();
-  }, []);
-
-  const checkAuth = async () => {
-    try {
-      const res = await client.auth.me();
-      if (res?.data) {
-        setUser(res.data);
-        loadData();
-      } else {
-        client.auth.toLogin();
-      }
-    } catch {
-      client.auth.toLogin();
+    if (authChecking) return;
+    if (!user) {
+      navigate('/login?from=/hire-guide/dashboard');
+      return;
     }
-  };
+    loadData();
+  }, [authChecking, user]);
 
   const loadData = async () => {
     setLoading(true);
     try {
+      const base = getAPIBaseURL();
+      const headers = authHeader();
       const [bookingsRes, toursRes] = await Promise.all([
-        client.apiCall.invoke({ url: '/api/v1/guide/guide-bookings', method: 'GET', data: {} }),
-        client.entities.tours.query({ query: {}, sort: '-created_at', limit: 50 }),
+        axios.get(`${base}/api/v1/guide/guide-bookings`, { headers }),
+        axios.get(`${base}/api/v1/entities/tours`, { headers, params: { query: '{}', sort: '-created_at', limit: 50 } }),
       ]);
       setBookings(bookingsRes.data?.items || []);
       setTours(toursRes.data?.items || []);
@@ -88,16 +82,20 @@ export default function GuideDashboard() {
     }
     setAddingTour(true);
     try {
+      const base = getAPIBaseURL();
+      const headers = authHeader();
+
       // Get guide profile to get guide_id
-      const guidesRes = await client.entities.guides.query({ query: {}, limit: 1 });
+      const guidesRes = await axios.get(`${base}/api/v1/entities/guides`, { headers, params: { query: '{}', limit: 1 } });
       const guideId = guidesRes.data?.items?.[0]?.id;
       if (!guideId) {
         alert('Guide profile not found. Please register first.');
         return;
       }
 
-      await client.entities.tours.create({
-        data: {
+      await axios.post(
+        `${base}/api/v1/entities/tours`,
+        {
           guide_id: guideId,
           title: newTitle,
           description: newDesc,
@@ -107,7 +105,8 @@ export default function GuideDashboard() {
           max_participants: parseInt(newMax) || 8,
           is_active: true,
         },
-      });
+        { headers }
+      );
       setShowAddTour(false);
       setNewTitle('');
       setNewDesc('');
@@ -116,7 +115,7 @@ export default function GuideDashboard() {
       setNewPrice('');
       loadData();
     } catch (error: any) {
-      alert(error?.data?.detail || 'Failed to add tour');
+      alert(error?.response?.data?.detail || 'Failed to add tour');
     } finally {
       setAddingTour(false);
     }
@@ -125,7 +124,7 @@ export default function GuideDashboard() {
   const deleteTour = async (tourId: number) => {
     if (!confirm('Delete this tour?')) return;
     try {
-      await client.entities.tours.delete({ id: String(tourId) });
+      await axios.delete(`${getAPIBaseURL()}/api/v1/entities/tours/${tourId}`, { headers: authHeader() });
       loadData();
     } catch (error) {
       alert('Failed to delete tour');

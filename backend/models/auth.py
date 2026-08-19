@@ -6,10 +6,12 @@ from sqlalchemy.sql import func
 class User(Base):
     __tablename__ = "users"
 
-    id = Column(String(255), primary_key=True, index=True)  # Use platform sub as primary key
+    id = Column(String(255), primary_key=True, index=True)  # platform sub (OIDC) or a generated id for local accounts
     email = Column(String(255), nullable=False)
     name = Column(String(255), nullable=True)
     role = Column(String(50), default="user", nullable=False)  # user/admin
+    # Null for OIDC-only accounts; set for accounts created via email/password registration.
+    password_hash = Column(String(255), nullable=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     last_login = Column(DateTime(timezone=True), nullable=True)
 

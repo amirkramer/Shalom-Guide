@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createClient } from '@metagptx/web-sdk';
+import axios from 'axios';
 import AppLayout from '@/components/layout/AppLayout';
 import AppHeader from '@/components/layout/AppHeader';
 import { Star, MapPin, Globe, Users } from 'lucide-react';
-
-const client = createClient();
+import { getAPIBaseURL } from '@/lib/config';
 
 const CITIES = [
   { id: 'all', label: 'All Regions', icon: '🌍' },
@@ -103,11 +102,7 @@ export default function HireGuide() {
       if (selectedCity !== 'all') {
         params.city = selectedCity;
       }
-      const response = await client.apiCall.invoke({
-        url: '/api/v1/guide/list',
-        method: 'GET',
-        data: params,
-      });
+      const response = await axios.get(`${getAPIBaseURL()}/api/v1/guide/list`, { params });
       const items = response.data?.items;
       if (items && items.length > 0) {
         setGuides(items);

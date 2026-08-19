@@ -8,25 +8,52 @@
         "name": {
             "type": "string"
         },
-        "category": {
+        "slug": {
             "type": "string"
         },
         "description": {
             "type": "string"
         },
-        "logo_url": {
+        "short_description": {
             "type": "string"
         },
-        "website": {
+        "category_ids": {
             "type": "string"
         },
-        "is_featured": {
+        "style_tags": {
+            "type": "string"
+        },
+        "price_level": {
+            "type": "integer"
+        },
+        "israeli_brand": {
             "type": "boolean"
         },
         "made_in_israel": {
             "type": "boolean"
         },
-        "badges": {
+        "verification_status": {
+            "type": "string"
+        },
+        "sustainability_tags": {
+            "type": "string"
+        },
+        "website_url": {
+            "type": "string"
+        },
+        "online_store_url": {
+            "type": "string"
+        },
+        "instagram_url": {
+            "type": "string"
+        },
+        "is_featured": {
+            "type": "boolean"
+        },
+        "sponsored": {
+            "type": "boolean"
+        },
+        "logo_url": {
             "type": "string"
         },
         "city": {
@@ -35,7 +62,6 @@
     },
     "required": [
         "id",
-        "name",
-        "category"
+        "name"
     ]
 }

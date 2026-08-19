@@ -2,7 +2,9 @@ import { Toaster } from '@/components/ui/sonner';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from '@/contexts/AuthContext';
 import Index from './pages/Index';
+import Login from './pages/Login';
 import Home from './pages/Home';
 import Transport from './pages/Transport';
 import Gastronomy from './pages/Gastronomy';
@@ -38,6 +40,7 @@ if (!localStorage.getItem('onboarded')) {
 const AppRoutes = () => (
   <Routes>
     <Route path="/" element={<Index />} />
+    <Route path="/login" element={<Login />} />
     <Route path="/home" element={<Home />} />
     <Route path="/auth/callback" element={<AuthCallback />} />
     <Route path="/transport" element={<Transport />} />
@@ -70,7 +73,9 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <BrowserRouter>
-        <AppRoutes />
+        <AuthProvider>
+          <AppRoutes />
+        </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

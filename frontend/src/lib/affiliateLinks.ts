@@ -176,3 +176,50 @@ export function getOntopoUrl(city: string): string {
   const slug = ONTOPO_CITY_SLUGS[city.trim().toLowerCase()];
   return slug ? `https://ontopo.com/en/il/${slug}` : 'https://ontopo.com/en/il';
 }
+
+// --- Shopping brands (Awin) --------------------------------------------------
+//
+// Awin's deep-link format is publicly documented and stable (unlike Discover
+// Cars/Expedia/trivago's opaque dashboard links), so we can build it directly:
+// https://www.awin1.com/cread.php?awinmid=<advertiser id>&awinaffid=<publisher id>&ued=<encoded target url>
+//
+// awinaffid is one fixed value (your publisher account id). awinmid is
+// per-advertiser and only exists for brands that actually have a live Awin
+// program — there's no way to know that from outside their advertiser
+// directory, so it's a lookup filled in brand-by-brand as you confirm them
+// there. Brands not in the map fall back to their plain website_url,
+// untracked.
+
+const AWIN_PUBLISHER_ID = import.meta.env.VITE_AWIN_PUBLISHER_ID || '';
+
+/**
+ * Confirmed Awin advertiser (merchant) IDs, keyed by this app's brand `slug`
+ * (backend/mock_data/shopping_brands.json). Add an entry here once you find
+ * the brand in Awin's advertiser directory and note its Advertiser/Merchant ID.
+ */
+const AWIN_MERCHANT_IDS: Record<string, string> = {
+  // ahava: '12345',
+};
+
+export function isAwinConfigured(): boolean {
+  return Boolean(AWIN_PUBLISHER_ID);
+}
+
+export function hasAwinProgram(brandSlug: string): boolean {
+  return brandSlug in AWIN_MERCHANT_IDS;
+}
+
+/**
+ * Awin-tracked link for a brand's website if it has a confirmed program;
+ * otherwise the plain website URL, untracked.
+ */
+export function getBrandUrl(brandSlug: string, websiteUrl: string): string {
+  const merchantId = AWIN_MERCHANT_IDS[brandSlug];
+  if (!merchantId || !AWIN_PUBLISHER_ID) return websiteUrl;
+  const params = new URLSearchParams({
+    awinmid: merchantId,
+    awinaffid: AWIN_PUBLISHER_ID,
+    ued: websiteUrl,
+  });
+  return `https://www.awin1.com/cread.php?${params.toString()}`;
+}

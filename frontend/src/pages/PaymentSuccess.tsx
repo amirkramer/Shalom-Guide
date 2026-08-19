@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { createClient } from '@metagptx/web-sdk';
+import axios from 'axios';
 import AppLayout from '@/components/layout/AppLayout';
 import { CheckCircle, XCircle, Loader2 } from 'lucide-react';
-
-const client = createClient();
+import { authHeader } from '@/lib/authStorage';
+import { getAPIBaseURL } from '@/lib/config';
 
 export default function PaymentSuccess() {
   const navigate = useNavigate();
@@ -23,11 +23,11 @@ export default function PaymentSuccess() {
 
   const verifyPayment = async () => {
     try {
-      const response = await client.apiCall.invoke({
-        url: '/api/v1/payment/verify_payment',
-        method: 'POST',
-        data: { session_id: sessionId },
-      });
+      const response = await axios.post(
+        `${getAPIBaseURL()}/api/v1/payment/verify_payment`,
+        { session_id: sessionId },
+        { headers: authHeader() }
+      );
 
       if (response.data?.status === 'confirmed' || response.data?.payment_status === 'paid') {
         setStatus('success');

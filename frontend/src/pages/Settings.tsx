@@ -76,7 +76,14 @@ export default function Settings() {
 
   useEffect(() => {
     localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
-    document.documentElement.classList.toggle('dark', settings.darkMode);
+    // NOT applying the `.dark` class here on purpose: the app's CSS variables
+    // for dark mode exist (index.css), but almost no component actually uses
+    // them — most cards/icons use hardcoded light colors (bg-white, etc.)
+    // while `body` inherits the near-white `--foreground` text color in dark
+    // mode. That mismatch made icons/text render white-on-white and
+    // unreadable app-wide. The preference is still saved for when a real
+    // dark theme is built, it just doesn't visually apply yet.
+    document.documentElement.classList.remove('dark');
   }, [settings]);
 
   const loadLanguages = async () => {
