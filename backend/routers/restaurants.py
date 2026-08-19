@@ -10,6 +10,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from core.database import get_db
 from services.restaurants import RestaurantsService
+from services.tripadvisor import refresh_restaurant_rating
 
 # Set up logging
 logger = logging.getLogger(__name__)
@@ -83,6 +84,9 @@ class RestaurantsResponse(BaseModel):
     phone: Optional[str] = None
     address: Optional[str] = None
     image_url: Optional[str] = None
+    tripadvisor_rating: Optional[float] = None
+    tripadvisor_review_count: Optional[int] = None
+    tripadvisor_url: Optional[str] = None
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
 
@@ -143,12 +147,26 @@ async def query_restaurantss(
                 raise HTTPException(status_code=400, detail="Invalid query JSON format")
         
         result = await service.get_list(
-            skip=skip, 
+            skip=skip,
             limit=limit,
             query_dict=query_dict,
             sort=sort,
         )
         logger.debug(f"Found {result['total']} restaurantss")
+
+        # Best-effort: refresh cached Tripadvisor ratings for any stale/unresolved
+        # restaurants in this page. No-ops entirely if TRIPADVISOR_API_KEY isn't
+        # set. Failures here shouldn't break the listing, so they're swallowed.
+        try:
+            changed = False
+            for restaurant in result["items"]:
+                if await refresh_restaurant_rating(restaurant):
+                    changed = True
+            if changed:
+                await db.commit()
+        except Exception as e:
+            logger.warning(f"Tripadvisor refresh pass failed: {e}")
+
         return result
     except HTTPException:
         raise

@@ -26,5 +26,12 @@ class Restaurants(Base):
     phone = Column(String, nullable=True)
     address = Column(String, nullable=True)
     image_url = Column(String, nullable=True)
+    # Cached from the Tripadvisor Terra API (services/tripadvisor.py) — refreshed
+    # periodically rather than on every request, to stay within API call limits.
+    tripadvisor_location_id = Column(Integer, nullable=True)
+    tripadvisor_rating = Column(Float, nullable=True)
+    tripadvisor_review_count = Column(Integer, nullable=True)
+    tripadvisor_url = Column(String, nullable=True)
+    tripadvisor_updated_at = Column(DateTime(timezone=True), nullable=True)
     created_at = Column(DateTime(timezone=True), default=datetime.now)
     updated_at = Column(DateTime(timezone=True), default=datetime.now, onupdate=datetime.now)

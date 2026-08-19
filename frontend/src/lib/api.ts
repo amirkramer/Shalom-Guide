@@ -17,7 +17,7 @@ export const api = {
       const response = await client.entities.restaurants.query({
         query,
         sort: '-rating',
-        limit: 50,
+        limit: 200,
       });
       return response.data?.items || [];
     } catch (error) {

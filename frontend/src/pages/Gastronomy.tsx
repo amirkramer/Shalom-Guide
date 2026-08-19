@@ -22,7 +22,7 @@ interface Restaurant {
   cuisine: string;
   rating: number;
   reviews: number;
-  certification: string;
+  certification?: string | null;
   price_level: number;
   distance: number;
   is_open: boolean;
@@ -33,8 +33,11 @@ interface Restaurant {
   kids_menu: boolean;
   pet_friendly: boolean;
   shabbat_open: boolean;
-  phone: string;
-  address: string;
+  phone?: string | null;
+  address?: string | null;
+  tripadvisor_rating?: number | null;
+  tripadvisor_review_count?: number | null;
+  tripadvisor_url?: string | null;
 }
 
 interface FeaturedRestaurant {
@@ -319,15 +322,27 @@ export default function Gastronomy() {
                         <Bookmark size={16} className="text-[#D4C5A9] flex-shrink-0" />
                       </div>
 
-                      <div className="flex items-center gap-2 mt-1">
+                      <div className="flex items-center gap-2 mt-1 flex-wrap">
                         <span className="text-[10px] font-body text-[#C8A96E]">★ {restaurant.rating}</span>
                         <span className="text-[10px] font-body text-[#1A1A2E]/40">{restaurant.reviews} reviews</span>
+                        {restaurant.tripadvisor_rating && restaurant.tripadvisor_url && (
+                          <a
+                            href={restaurant.tripadvisor_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-1 text-[9px] font-body px-1.5 py-0.5 rounded-full bg-[#34E0A1]/10 text-[#00AA6C] font-medium"
+                          >
+                            🦉 {restaurant.tripadvisor_rating} ({restaurant.tripadvisor_review_count})
+                          </a>
+                        )}
                       </div>
 
                       <div className="flex items-center gap-1.5 mt-1.5 flex-wrap">
-                        <span className="text-[9px] font-body px-1.5 py-0.5 rounded-full bg-[#4A7C59]/10 text-[#4A7C59] font-medium">
-                          {restaurant.certification}
-                        </span>
+                        {restaurant.certification && (
+                          <span className="text-[9px] font-body px-1.5 py-0.5 rounded-full bg-[#4A7C59]/10 text-[#4A7C59] font-medium">
+                            {restaurant.certification}
+                          </span>
+                        )}
                         {restaurant.kids_menu && (
                           <span className="text-[9px] font-body px-1.5 py-0.5 rounded-full bg-purple-50 text-purple-600 font-medium">
                             👶 Kids
@@ -363,14 +378,16 @@ export default function Gastronomy() {
                   </div>
 
                   <div className="flex gap-2 mt-3 pt-3 border-t border-[#D4C5A9]/10">
+                    {restaurant.phone && (
+                      <a
+                        href={`tel:${restaurant.phone}`}
+                        className="flex-1 flex items-center justify-center gap-1 text-[10px] font-body font-medium text-[#003F87] py-1.5 rounded-lg bg-[#003F87]/5"
+                      >
+                        <Phone size={10} /> Call
+                      </a>
+                    )}
                     <a
-                      href={`tel:${restaurant.phone}`}
-                      className="flex-1 flex items-center justify-center gap-1 text-[10px] font-body font-medium text-[#003F87] py-1.5 rounded-lg bg-[#003F87]/5"
-                    >
-                      <Phone size={10} /> Call
-                    </a>
-                    <a
-                      href={getMapsDirectionsUrl(`${restaurant.address}, ${restaurant.city}`)}
+                      href={getMapsDirectionsUrl(`${restaurant.address || restaurant.name}, ${restaurant.city}`)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex-1 flex items-center justify-center gap-1 text-[10px] font-body font-medium text-[#003F87] py-1.5 rounded-lg bg-[#003F87]/5"

@@ -142,5 +142,215 @@
         "shabbat_open": true,
         "phone": "+972-4-955-2212",
         "address": "HaHagana St, Old Akko"
+    },
+    {
+        "name": "Fattoush", "cuisine": "Lebanese", "rating": 4.2, "reviews": 1411, "price_level": 2,
+        "distance": 1.0, "is_open": true, "closes_at": "22:00", "opens_at": "12:00",
+        "tags": "Popular on Tripadvisor", "city": "Haifa", "kids_menu": false, "pet_friendly": false, "shabbat_open": false,
+        "tripadvisor_location_id": 1020765, "tripadvisor_rating": 4.2, "tripadvisor_review_count": 1411,
+        "tripadvisor_url": "https://www.tripadvisor.com/Restaurant_Review-g293982-d1020765-Reviews-Fattoush-Haifa_Haifa_District.html?m=70260"
+    },
+    {
+        "name": "Douzan", "cuisine": "Middle Eastern", "rating": 4.3, "reviews": 828, "price_level": 2,
+        "distance": 1.0, "is_open": true, "closes_at": "22:00", "opens_at": "12:00",
+        "tags": "Popular on Tripadvisor", "city": "Haifa", "kids_menu": false, "pet_friendly": false, "shabbat_open": false,
+        "tripadvisor_location_id": 1388943, "tripadvisor_rating": 4.3, "tripadvisor_review_count": 828,
+        "tripadvisor_url": "https://www.tripadvisor.com/Restaurant_Review-g293982-d1388943-Reviews-Douzan-Haifa_Haifa_District.html?m=70260"
+    },
+    {
+        "name": "Hanamal 24", "cuisine": "French", "rating": 4.3, "reviews": 611, "price_level": 3,
+        "distance": 1.0, "is_open": true, "closes_at": "22:00", "opens_at": "12:00",
+        "tags": "Popular on Tripadvisor", "city": "Haifa", "kids_menu": false, "pet_friendly": false, "shabbat_open": false,
+        "tripadvisor_location_id": 1595889, "tripadvisor_rating": 4.3, "tripadvisor_review_count": 611,
+        "tripadvisor_url": "https://www.tripadvisor.com/Restaurant_Review-g293982-d1595889-Reviews-Hanamal_24-Haifa_Haifa_District.html?m=70260"
+    },
+    {
+        "name": "Sinta Bar", "cuisine": "Bar & Grill", "rating": 4.2, "reviews": 787, "price_level": 2,
+        "distance": 1.0, "is_open": true, "closes_at": "22:00", "opens_at": "12:00",
+        "tags": "Popular on Tripadvisor", "city": "Haifa", "kids_menu": false, "pet_friendly": false, "shabbat_open": false,
+        "tripadvisor_location_id": 784434, "tripadvisor_rating": 4.2, "tripadvisor_review_count": 787,
+        "tripadvisor_url": "https://www.tripadvisor.com/Restaurant_Review-g293982-d784434-Reviews-Sinta_Bar-Haifa_Haifa_District.html?m=70260"
+    },
+    {
+        "name": "Dream Nemo", "cuisine": "Sushi", "rating": 3.8, "reviews": 212, "price_level": 2,
+        "distance": 1.0, "is_open": true, "closes_at": "22:00", "opens_at": "12:00",
+        "tags": "Popular on Tripadvisor", "city": "Haifa", "kids_menu": false, "pet_friendly": false, "shabbat_open": false,
+        "tripadvisor_location_id": 3579359, "tripadvisor_rating": 3.8, "tripadvisor_review_count": 212,
+        "tripadvisor_url": "https://www.tripadvisor.com/Restaurant_Review-g293982-d3579359-Reviews-Dream_Nemo-Haifa_Haifa_District.html?m=70260"
+    },
+    {
+        "name": "Santa Maria", "cuisine": "Cafe", "rating": 3.7, "reviews": 150, "price_level": 1,
+        "distance": 1.0, "is_open": true, "closes_at": "22:00", "opens_at": "12:00",
+        "tags": "Popular on Tripadvisor", "city": "Haifa", "kids_menu": false, "pet_friendly": false, "shabbat_open": false,
+        "tripadvisor_location_id": 4735987, "tripadvisor_rating": 3.7, "tripadvisor_review_count": 150,
+        "tripadvisor_url": "https://www.tripadvisor.com/Restaurant_Review-g293982-d4735987-Reviews-Santa_Maria-Haifa_Haifa_District.html?m=70260"
+    },
+    {
+        "name": "Hummus Shlomo and Doron", "cuisine": "Israeli", "rating": 4.8, "reviews": 108, "price_level": 1,
+        "distance": 1.0, "is_open": true, "closes_at": "22:00", "opens_at": "12:00",
+        "tags": "Popular on Tripadvisor", "city": "Tel Aviv", "kids_menu": false, "pet_friendly": false, "shabbat_open": false,
+        "tripadvisor_location_id": 7284767, "tripadvisor_rating": 4.8, "tripadvisor_review_count": 108,
+        "tripadvisor_url": "https://www.tripadvisor.com/Restaurant_Review-g293984-d7284767-Reviews-Hummus_Shlomo_and_Doron-Tel_Aviv_Tel_Aviv_District.html?m=70260"
+    },
+    {
+        "name": "Garger Hazahav", "cuisine": "Israeli", "rating": 4.1, "reviews": 58, "price_level": 1,
+        "distance": 1.0, "is_open": true, "closes_at": "22:00", "opens_at": "12:00",
+        "tags": "Popular on Tripadvisor", "city": "Tel Aviv", "kids_menu": false, "pet_friendly": false, "shabbat_open": false,
+        "tripadvisor_location_id": 9857980, "tripadvisor_rating": 4.1, "tripadvisor_review_count": 58,
+        "tripadvisor_url": "https://www.tripadvisor.com/Restaurant_Review-g293984-d9857980-Reviews-Garger_Hazahav-Tel_Aviv_Tel_Aviv_District.html?m=70260"
+    },
+    {
+        "name": "Aricha Sabich", "cuisine": "Israeli", "rating": 4.8, "reviews": 114, "price_level": 1,
+        "distance": 1.0, "is_open": true, "closes_at": "22:00", "opens_at": "12:00",
+        "tags": "Popular on Tripadvisor", "city": "Jerusalem", "kids_menu": false, "pet_friendly": false, "shabbat_open": false,
+        "tripadvisor_location_id": 6813419, "tripadvisor_rating": 4.8, "tripadvisor_review_count": 114,
+        "tripadvisor_url": "https://www.tripadvisor.com/Restaurant_Review-g293983-d6813419-Reviews-Aricha_Sabich-Jerusalem_Jerusalem_District.html?m=70260"
+    },
+    {
+        "name": "Ha'Agas 1", "cuisine": "Vegetarian", "rating": 4.3, "reviews": 63, "price_level": 1,
+        "distance": 1.0, "is_open": true, "closes_at": "22:00", "opens_at": "12:00",
+        "tags": "Popular on Tripadvisor", "city": "Jerusalem", "kids_menu": false, "pet_friendly": false, "shabbat_open": false,
+        "tripadvisor_location_id": 3293731, "tripadvisor_rating": 4.3, "tripadvisor_review_count": 63,
+        "tripadvisor_url": "https://www.tripadvisor.com/Restaurant_Review-g293983-d3293731-Reviews-Ha_Agas_1-Jerusalem_Jerusalem_District.html?m=70260"
+    },
+    {
+        "name": "The Last Refuge", "cuisine": "Seafood", "rating": 4.0, "reviews": 1018, "price_level": 2,
+        "distance": 1.0, "is_open": true, "closes_at": "22:00", "opens_at": "12:00",
+        "tags": "Popular on Tripadvisor", "city": "Eilat", "kids_menu": false, "pet_friendly": false, "shabbat_open": false,
+        "tripadvisor_location_id": 953820, "tripadvisor_rating": 4.0, "tripadvisor_review_count": 1018,
+        "tripadvisor_url": "https://www.tripadvisor.com/Restaurant_Review-g293980-d953820-Reviews-The_Last_Refuge-Eilat_Southern_District.html?m=70260"
+    },
+    {
+        "name": "Pedro Restuarant", "cuisine": "Mediterranean", "rating": 4.6, "reviews": 1940, "price_level": 2,
+        "distance": 1.0, "is_open": true, "closes_at": "22:00", "opens_at": "12:00",
+        "tags": "Popular on Tripadvisor", "city": "Eilat", "kids_menu": false, "pet_friendly": false, "shabbat_open": false,
+        "tripadvisor_location_id": 2346785, "tripadvisor_rating": 4.6, "tripadvisor_review_count": 1940,
+        "tripadvisor_url": "https://www.tripadvisor.com/Restaurant_Review-g293980-d2346785-Reviews-Pedro_Restuarant-Eilat_Southern_District.html?m=70260"
+    },
+    {
+        "name": "Pastory", "cuisine": "Italian", "rating": 4.8, "reviews": 8846, "price_level": 2,
+        "distance": 1.0, "is_open": true, "closes_at": "22:00", "opens_at": "12:00",
+        "tags": "Popular on Tripadvisor", "city": "Eilat", "kids_menu": false, "pet_friendly": false, "shabbat_open": false,
+        "tripadvisor_location_id": 3158822, "tripadvisor_rating": 4.8, "tripadvisor_review_count": 8846,
+        "tripadvisor_url": "https://www.tripadvisor.com/Restaurant_Review-g293980-d3158822-Reviews-Pastory-Eilat_Southern_District.html?m=70260"
+    },
+    {
+        "name": "Les Sardines", "cuisine": "Seafood", "rating": 4.7, "reviews": 1867, "price_level": 2,
+        "distance": 1.0, "is_open": true, "closes_at": "22:00", "opens_at": "12:00",
+        "tags": "Popular on Tripadvisor", "city": "Eilat", "kids_menu": false, "pet_friendly": false, "shabbat_open": false,
+        "tripadvisor_location_id": 6518020, "tripadvisor_rating": 4.7, "tripadvisor_review_count": 1867,
+        "tripadvisor_url": "https://www.tripadvisor.com/Restaurant_Review-g293980-d6518020-Reviews-Les_Sardines-Eilat_Southern_District.html?m=70260"
+    },
+    {
+        "name": "Yakuta", "cuisine": "Moroccan", "rating": 4.4, "reviews": 345, "price_level": 2,
+        "distance": 1.0, "is_open": true, "closes_at": "22:00", "opens_at": "12:00",
+        "tags": "Popular on Tripadvisor", "city": "Beer Sheva", "kids_menu": false, "pet_friendly": false, "shabbat_open": false,
+        "tripadvisor_location_id": 2225704, "tripadvisor_rating": 4.4, "tripadvisor_review_count": 345,
+        "tripadvisor_url": "https://www.tripadvisor.com/Restaurant_Review-g297741-d2225704-Reviews-Yakuta-Beersheba_Southern_District.html?m=70260"
+    },
+    {
+        "name": "Saba Jebeto", "cuisine": "Sandwiches", "rating": 4.4, "reviews": 327, "price_level": 1,
+        "distance": 1.0, "is_open": true, "closes_at": "22:00", "opens_at": "12:00",
+        "tags": "Popular on Tripadvisor", "city": "Beer Sheva", "kids_menu": false, "pet_friendly": false, "shabbat_open": false,
+        "tripadvisor_location_id": 2454505, "tripadvisor_rating": 4.4, "tripadvisor_review_count": 327,
+        "tripadvisor_url": "https://www.tripadvisor.com/Restaurant_Review-g297741-d2454505-Reviews-Saba_Jebeto-Beersheba_Southern_District.html?m=70260"
+    },
+    {
+        "name": "Alabama", "cuisine": "BBQ", "rating": 4.4, "reviews": 311, "price_level": 2,
+        "distance": 1.0, "is_open": true, "closes_at": "22:00", "opens_at": "12:00",
+        "tags": "Popular on Tripadvisor", "city": "Netanya", "kids_menu": false, "pet_friendly": false, "shabbat_open": false,
+        "tripadvisor_location_id": 3989700, "tripadvisor_rating": 4.4, "tripadvisor_review_count": 311,
+        "tripadvisor_url": "https://www.tripadvisor.com/Restaurant_Review-g297759-d3989700-Reviews-Alabama-Netanya_Central_District.html?m=70260"
+    },
+    {
+        "name": "Ni-Shi", "cuisine": "Asian", "rating": 4.3, "reviews": 274, "price_level": 2,
+        "distance": 1.0, "is_open": true, "closes_at": "22:00", "opens_at": "12:00",
+        "tags": "Popular on Tripadvisor", "city": "Netanya", "kids_menu": false, "pet_friendly": false, "shabbat_open": false,
+        "tripadvisor_location_id": 14210276, "tripadvisor_rating": 4.3, "tripadvisor_review_count": 274,
+        "tripadvisor_url": "https://www.tripadvisor.com/Restaurant_Review-g297759-d14210276-Reviews-Ni_Shi-Netanya_Central_District.html?m=70260"
+    },
+    {
+        "name": "Red Burger Bar", "cuisine": "Burgers", "rating": 3.8, "reviews": 222, "price_level": 1,
+        "distance": 1.0, "is_open": true, "closes_at": "22:00", "opens_at": "12:00",
+        "tags": "Popular on Tripadvisor", "city": "Netanya", "kids_menu": false, "pet_friendly": false, "shabbat_open": false,
+        "tripadvisor_location_id": 4993530, "tripadvisor_rating": 3.8, "tripadvisor_review_count": 222,
+        "tripadvisor_url": "https://www.tripadvisor.com/Restaurant_Review-g297759-d4993530-Reviews-Red_Burger_Bar-Netanya_Central_District.html?m=70260"
+    },
+    {
+        "name": "Herbert Samuel Herzliya", "cuisine": "European", "rating": 4.2, "reviews": 410, "price_level": 3,
+        "distance": 1.0, "is_open": true, "closes_at": "22:00", "opens_at": "12:00",
+        "tags": "Popular on Tripadvisor", "city": "Herzliya", "kids_menu": false, "pet_friendly": false, "shabbat_open": false,
+        "tripadvisor_location_id": 5926153, "tripadvisor_rating": 4.2, "tripadvisor_review_count": 410,
+        "tripadvisor_url": "https://www.tripadvisor.com/Restaurant_Review-g297747-d5926153-Reviews-Herbert_Samuel_Herzliya-Herzliya_Tel_Aviv_District.html?m=70260"
+    },
+    {
+        "name": "Bistro 56", "cuisine": "Mediterranean", "rating": 4.5, "reviews": 814, "price_level": 2,
+        "distance": 1.0, "is_open": true, "closes_at": "22:00", "opens_at": "12:00",
+        "tags": "Popular on Tripadvisor", "city": "Herzliya", "kids_menu": false, "pet_friendly": false, "shabbat_open": false,
+        "tripadvisor_location_id": 1163756, "tripadvisor_rating": 4.5, "tripadvisor_review_count": 814,
+        "tripadvisor_url": "https://www.tripadvisor.com/Restaurant_Review-g297747-d1163756-Reviews-Bistro_56-Herzliya_Tel_Aviv_District.html?m=70260"
+    },
+    {
+        "name": "Yam 7", "cuisine": "Seafood", "rating": 4.0, "reviews": 631, "price_level": 2,
+        "distance": 1.0, "is_open": true, "closes_at": "22:00", "opens_at": "12:00",
+        "tags": "Popular on Tripadvisor", "city": "Herzliya", "kids_menu": false, "pet_friendly": false, "shabbat_open": false,
+        "tripadvisor_location_id": 2399548, "tripadvisor_rating": 4.0, "tripadvisor_review_count": 631,
+        "tripadvisor_url": "https://www.tripadvisor.com/Restaurant_Review-g297747-d2399548-Reviews-Yam_7-Herzliya_Tel_Aviv_District.html?m=70260"
+    },
+    {
+        "name": "Sebastian", "cuisine": "Mediterranean", "rating": 4.1, "reviews": 779, "price_level": 2,
+        "distance": 1.0, "is_open": true, "closes_at": "22:00", "opens_at": "12:00",
+        "tags": "Popular on Tripadvisor", "city": "Herzliya", "kids_menu": false, "pet_friendly": false, "shabbat_open": false,
+        "tripadvisor_location_id": 873187, "tripadvisor_rating": 4.1, "tripadvisor_review_count": 779,
+        "tripadvisor_url": "https://www.tripadvisor.com/Restaurant_Review-g297747-d873187-Reviews-Sebastian-Herzliya_Tel_Aviv_District.html?m=70260"
+    },
+    {
+        "name": "Tishreen", "cuisine": "Middle Eastern", "rating": 4.4, "reviews": 1028, "price_level": 2,
+        "distance": 1.0, "is_open": true, "closes_at": "22:00", "opens_at": "12:00",
+        "tags": "Popular on Tripadvisor", "city": "Nazareth", "kids_menu": false, "pet_friendly": false, "shabbat_open": false,
+        "tripadvisor_location_id": 971418, "tripadvisor_rating": 4.4, "tripadvisor_review_count": 1028,
+        "tripadvisor_url": "https://www.tripadvisor.com/Restaurant_Review-g297758-d971418-Reviews-Tishreen-Nazareth_Galilee_Region.html?m=70260"
+    },
+    {
+        "name": "Amani Cafe", "cuisine": "Cafe", "rating": 5.0, "reviews": 31, "price_level": 1,
+        "distance": 1.0, "is_open": true, "closes_at": "22:00", "opens_at": "12:00",
+        "tags": "Popular on Tripadvisor", "city": "Nazareth", "kids_menu": false, "pet_friendly": false, "shabbat_open": false,
+        "tripadvisor_location_id": 19298587, "tripadvisor_rating": 5.0, "tripadvisor_review_count": 31,
+        "tripadvisor_url": "https://www.tripadvisor.com/Restaurant_Review-g297758-d19298587-Reviews-Amani_Cafe-Nazareth_Galilee_Region.html?m=70260"
+    },
+    {
+        "name": "Little Tiberias", "cuisine": "French", "rating": 4.3, "reviews": 915, "price_level": 3,
+        "distance": 1.0, "is_open": true, "closes_at": "22:00", "opens_at": "12:00",
+        "tags": "Popular on Tripadvisor", "city": "Tiberias", "kids_menu": false, "pet_friendly": false, "shabbat_open": false,
+        "tripadvisor_location_id": 1837739, "tripadvisor_rating": 4.3, "tripadvisor_review_count": 915,
+        "tripadvisor_url": "https://www.tripadvisor.com/Restaurant_Review-g297765-d1837739-Reviews-Little_Tiberias-Tiberias_Galilee_Region.html?m=70260"
+    },
+    {
+        "name": "Decks Restaurant", "cuisine": "Grill", "rating": 4.0, "reviews": 704, "price_level": 2,
+        "distance": 1.0, "is_open": true, "closes_at": "22:00", "opens_at": "12:00",
+        "tags": "Popular on Tripadvisor", "city": "Tiberias", "kids_menu": false, "pet_friendly": false, "shabbat_open": false,
+        "tripadvisor_location_id": 1127711, "tripadvisor_rating": 4.0, "tripadvisor_review_count": 704,
+        "tripadvisor_url": "https://www.tripadvisor.com/Restaurant_Review-g297765-d1127711-Reviews-Decks_Restaurant-Tiberias_Galilee_Region.html?m=70260"
+    },
+    {
+        "name": "Levin Baguette", "cuisine": "Sandwiches", "rating": 4.9, "reviews": 8, "price_level": 1,
+        "distance": 1.0, "is_open": true, "closes_at": "22:00", "opens_at": "12:00",
+        "tags": "Popular on Tripadvisor", "city": "Tiberias", "kids_menu": false, "pet_friendly": false, "shabbat_open": false,
+        "tripadvisor_location_id": 15849618, "tripadvisor_rating": 4.9, "tripadvisor_review_count": 8,
+        "tripadvisor_url": "https://www.tripadvisor.com/Restaurant_Review-g297765-d15849618-Reviews-Levin_Baguette-Tiberias_Galilee_Region.html?m=70260"
+    },
+    {
+        "name": "Limani Bistro", "cuisine": "Seafood", "rating": 4.1, "reviews": 396, "price_level": 2,
+        "distance": 1.0, "is_open": true, "closes_at": "22:00", "opens_at": "12:00",
+        "tags": "Popular on Tripadvisor", "city": "Caesarea", "kids_menu": false, "pet_friendly": false, "shabbat_open": false,
+        "tripadvisor_location_id": 7251187, "tripadvisor_rating": 4.1, "tripadvisor_review_count": 396,
+        "tripadvisor_url": "https://www.tripadvisor.com/Restaurant_Review-g297742-d7251187-Reviews-Limani_Bistro-Caesarea_Haifa_District.html?m=70260"
+    },
+    {
+        "name": "Aresto", "cuisine": "Italian", "rating": 3.5, "reviews": 132, "price_level": 2,
+        "distance": 1.0, "is_open": true, "closes_at": "22:00", "opens_at": "12:00",
+        "tags": "Popular on Tripadvisor", "city": "Caesarea", "kids_menu": false, "pet_friendly": false, "shabbat_open": false,
+        "tripadvisor_location_id": 3375213, "tripadvisor_rating": 3.5, "tripadvisor_review_count": 132,
+        "tripadvisor_url": "https://www.tripadvisor.com/Restaurant_Review-g297742-d3375213-Reviews-Aresto-Caesarea_Haifa_District.html?m=70260"
     }
 ]
