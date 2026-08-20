@@ -178,22 +178,44 @@ export default function ShoppingBrand() {
           </div>
         </div>
 
-        {/* Links - In-app WebView */}
+        {/* Links - in-app WebView for the plain (untracked) site; a real new
+            tab for Awin-tracked links, since embedding a tracking redirect
+            in an iframe risks losing the commission — third-party cookies
+            (which is how Awin attributes the sale) are widely blocked inside
+            iframes (Safari ITP blocks them outright, Chrome is phasing them
+            out too), so the affiliate link needs a real top-level
+            navigation to reliably set its cookie. */}
         <div className="flex gap-2 mb-3">
           {brand.website_url && (
             <button
-              onClick={() => { setWebViewUrl(getBrandUrl(brand.slug, brand.website_url!)); setWebViewTitle('Website'); }}
+              onClick={() => {
+                const url = getBrandUrl(brand.slug, brand.website_url!);
+                if (hasAwinProgram(brand.slug)) {
+                  window.open(url, '_blank', 'noopener,noreferrer');
+                } else {
+                  setWebViewUrl(url);
+                  setWebViewTitle('Website');
+                }
+              }}
               className="flex-1 bg-[#003F87] text-white text-xs py-2.5 rounded-xl font-body font-medium flex items-center justify-center gap-1.5 active:scale-95 transition-transform"
             >
-              <Globe size={12} /> Website{hasAwinProgram(brand.slug) ? ' 💰' : ''}
+              <Globe size={12} /> Website{hasAwinProgram(brand.slug) ? ' 💰 ↗' : ''}
             </button>
           )}
           {brand.online_store_url && (
             <button
-              onClick={() => { setWebViewUrl(getBrandUrl(brand.slug, brand.online_store_url!)); setWebViewTitle('Shop Online'); }}
+              onClick={() => {
+                const url = getBrandUrl(brand.slug, brand.online_store_url!);
+                if (hasAwinProgram(brand.slug)) {
+                  window.open(url, '_blank', 'noopener,noreferrer');
+                } else {
+                  setWebViewUrl(url);
+                  setWebViewTitle('Shop Online');
+                }
+              }}
               className="flex-1 bg-[#C8A96E] text-white text-xs py-2.5 rounded-xl font-body font-medium flex items-center justify-center gap-1.5 active:scale-95 transition-transform"
             >
-              <ExternalLink size={12} /> Shop Online{hasAwinProgram(brand.slug) ? ' 💰' : ''}
+              <ExternalLink size={12} /> Shop Online{hasAwinProgram(brand.slug) ? ' 💰 ↗' : ''}
             </button>
           )}
         </div>

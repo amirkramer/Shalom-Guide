@@ -111,6 +111,10 @@ const KNOWN_FRAME_BLOCKING_HOSTS = [
   'x.com',
   'tiktok.com',
   'linkedin.com',
+  // Confirmed individually (send X-Frame-Options/CSP frame-ancestors headers
+  // that refuse embedding) rather than assumed from being a bigger business:
+  'eldan.co.il',
+  'avis.co.il',
 ];
 
 export function canEmbedArbitraryUrl(url: string): boolean {

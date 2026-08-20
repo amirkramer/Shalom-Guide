@@ -6,6 +6,7 @@ import { api } from '@/lib/api';
 import { getMoovitUrl, getGettAppLinks, getTransitDirectionsUrl } from '@/lib/discoveryLinks';
 import { getDiscoverCarsUrl, isDiscoverCarsTracked } from '@/lib/affiliateLinks';
 import ExternalWebview from '@/components/ExternalWebview';
+import SmartExternalLink from '@/components/SmartExternalLink';
 
 const tabs = ['🚌 Bus & Train', '🗺️ Live Map', '🚕 Taxi', '🚗 Car Rental'];
 
@@ -211,14 +212,13 @@ export default function Transport() {
                     <span>{route.stops} stops</span>
                   </div>
                   <div className="flex gap-2 mt-3">
-                    <a
+                    <SmartExternalLink
                       href={getMoovitUrl(route.to_city)}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      label="Moovit"
                       className="flex-1 bg-[#003F87]/5 text-[#003F87] text-xs py-2 rounded-lg font-body font-medium flex items-center justify-center gap-1"
                     >
                       <Bus size={12} /> Moovit
-                    </a>
+                    </SmartExternalLink>
                     <button
                       onClick={() => {
                         setOrigin(route.from_city);
@@ -441,14 +441,13 @@ export default function Transport() {
                       </div>
                       <div className="flex flex-col items-end gap-1">
                         {company.website_url && (
-                          <a
+                          <SmartExternalLink
                             href={company.website_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                            label={company.name}
                             className="flex items-center gap-1 text-[10px] font-body text-[#003F87] font-medium"
                           >
                             <ExternalLink size={10} /> Book
-                          </a>
+                          </SmartExternalLink>
                         )}
                         {company.phone && (
                           <a href={`tel:${company.phone}`} className="text-[9px] font-body text-[#4A7C59]">

@@ -57,12 +57,34 @@ export function getParksAuthorityUrl(query: string): string {
 }
 
 /**
+ * Real, verified official sites for the mock experience providers where one
+ * exists and is confirmed to actually be that specific business (checked
+ * individually, not guessed). Most of the mock provider names in
+ * experiences.json ("TLV Art Tours", "Desert Eco Tours", "Ramon Crater
+ * Astronomy"...) don't correspond to a findable real company — searching for
+ * them turns up other, different operators offering similar tours, and
+ * linking those in as if they were the named provider would misattribute a
+ * business we didn't actually verify. Only add an entry here once a real
+ * site has been confirmed to be that exact provider.
+ */
+const EXPERIENCE_PROVIDER_LINKS: Record<string, string> = {
+  'Kfar Hanokdim': 'https://www.kfarhanokdim.co.il/en/',
+  'Aqua Sport Eilat': 'https://www.aqua-sport.com/',
+};
+
+/**
  * Best-effort booking search for a tour/experience — we don't have a confirmed
- * URL for each small local operator (Kfar Hanokdim, Aqua Sport Eilat, etc.),
- * so this is a plain web search combining the title, operator, and city.
+ * URL for each small local operator (see EXPERIENCE_PROVIDER_LINKS above for
+ * the ones we do), so this is a plain web search combining the title,
+ * operator, and city.
  */
 export function getExperienceBookingSearchUrl(title: string, provider: string, city: string): string {
   return `https://www.google.com/search?q=${encodeURIComponent(`${title} ${provider} ${city} booking`)}`;
+}
+
+/** Real provider site when confirmed, else the search fallback above. */
+export function getExperienceBookingUrl(title: string, provider: string, city: string): string {
+  return EXPERIENCE_PROVIDER_LINKS[provider] ?? getExperienceBookingSearchUrl(title, provider, city);
 }
 
 /**
@@ -94,6 +116,28 @@ const KNOWN_SITE_LINKS: Record<string, { tickets: string; info?: string }> = {
   'Timna Park': {
     tickets: 'https://parktimna.co.il/en/tickets/',
     info: 'https://parktimna.co.il/en/timna-park/',
+  },
+  // Free entry, no ticketing system — `tickets` points at the same official
+  // visit-info page rather than a separate purchase flow that doesn't exist.
+  'Western Wall': {
+    tickets: 'https://thekotel.org/en/visitor-info/',
+    info: 'https://thekotel.org/en/',
+  },
+  'Church of the Holy Sepulchre': {
+    tickets: 'https://thechurchoftheholysepulchre.com/plan-your-visit/',
+    info: 'https://thechurchoftheholysepulchre.com/',
+  },
+  // No single official visitor site exists (managed by the Jordanian Waqf);
+  // itraveljerusalem.com is the Jerusalem Development Authority's own
+  // tourism resource, the closest to an official source available.
+  'Al-Aqsa Mosque': {
+    tickets: 'https://www.itraveljerusalem.com/attraction/al-aqsa-mosque',
+  },
+  'Basilica of the Annunciation': {
+    tickets: 'https://www.basilicanazareth.org',
+  },
+  'Bahai World Centre': {
+    tickets: 'https://ganbahai.org.il/visit-us-haifa/',
   },
 };
 

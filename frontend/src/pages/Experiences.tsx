@@ -3,7 +3,9 @@ import AppLayout from '@/components/layout/AppLayout';
 import { ArrowLeft, Star } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { api } from '@/lib/api';
-import { getExperienceBookingSearchUrl } from '@/lib/discoveryLinks';
+import { getExperienceBookingUrl } from '@/lib/discoveryLinks';
+import { canEmbedArbitraryUrl } from '@/lib/affiliateLinks';
+import ExternalWebview from '@/components/ExternalWebview';
 
 const tabs = ['All', 'Food & Wine', 'Adventure', 'History', 'Religious', 'Family', 'Nightlife'];
 
@@ -27,6 +29,7 @@ export default function Experiences() {
   const [activeTab, setActiveTab] = useState('All');
   const [experiences, setExperiences] = useState<Experience[]>([]);
   const [loading, setLoading] = useState(true);
+  const [webview, setWebview] = useState<{ url: string; label: string } | null>(null);
 
   useEffect(() => {
     loadExperiences();
@@ -108,14 +111,19 @@ export default function Experiences() {
                     </div>
                     <span className="font-mono-data text-sm font-bold text-[#003F87]">₪{exp.price}<span className="text-[10px] font-normal text-[#1A1A2E]/50">/person</span></span>
                   </div>
-                  <a
-                    href={getExperienceBookingSearchUrl(exp.title, exp.provider, exp.city)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-3 block w-full text-center bg-[#003F87] text-white text-xs py-2.5 rounded-xl font-body font-medium active:scale-95 transition-transform"
-                  >
-                    Book Experience
-                  </a>
+                  {(() => {
+                    const url = getExperienceBookingUrl(exp.title, exp.provider, exp.city);
+                    const className = "mt-3 block w-full text-center bg-[#003F87] text-white text-xs py-2.5 rounded-xl font-body font-medium active:scale-95 transition-transform";
+                    return canEmbedArbitraryUrl(url) ? (
+                      <button onClick={() => setWebview({ url, label: exp.provider })} className={className}>
+                        Book Experience
+                      </button>
+                    ) : (
+                      <a href={url} target="_blank" rel="noopener noreferrer" className={className}>
+                        Book Experience ↗
+                      </a>
+                    );
+                  })()}
                 </div>
               </div>
             ))}
@@ -129,6 +137,15 @@ export default function Experiences() {
           </div>
         )}
       </div>
+
+      {webview && (
+        <ExternalWebview
+          url={webview.url}
+          label={webview.label}
+          color="#003F87"
+          onClose={() => setWebview(null)}
+        />
+      )}
     </AppLayout>
   );
 }

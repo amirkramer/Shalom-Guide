@@ -266,10 +266,20 @@ export default function ShoppingStore() {
           </button>
           {store.website_url && (
             <button
-              onClick={() => setShowWebModal(true)}
+              onClick={() => {
+                // Awin-tracked links need a real top-level navigation, not an
+                // iframe — third-party cookies (how Awin attributes the sale)
+                // are widely blocked inside iframes, which would silently
+                // lose the commission.
+                if (brand && hasAwinProgram(brand.slug)) {
+                  window.open(getBrandUrl(brand.slug, store.website_url), '_blank', 'noopener,noreferrer');
+                } else {
+                  setShowWebModal(true);
+                }
+              }}
               className="w-full bg-white text-[#003F87] py-3 rounded-xl font-body font-semibold text-sm flex items-center justify-center gap-2 border border-[#003F87]/20 active:scale-95 transition-transform"
             >
-              <Globe size={14} /> Visit Website{brand && hasAwinProgram(brand.slug) ? ' 💰' : ''}
+              <Globe size={14} /> Visit Website{brand && hasAwinProgram(brand.slug) ? ' 💰 ↗' : ''}
             </button>
           )}
         </div>

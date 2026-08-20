@@ -3,6 +3,7 @@ import AppLayout from '@/components/layout/AppLayout';
 import { ArrowLeft, ChevronDown, Users, MapPin, Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { api } from '@/lib/api';
+import SmartExternalLink from '@/components/SmartExternalLink';
 
 const closedOnShabbat = ['Most restaurants & shops', 'Public transport', 'Banks & offices', 'Shopping malls'];
 const openOnShabbat = ['Hotels', 'Hospitals & pharmacies', 'Shabbat-open restaurants', 'Emergency services'];
@@ -168,14 +169,14 @@ export default function Shabbat() {
                   <Users size={10} /> {family.capacity}
                 </div>
               </div>
-              <a
+              <SmartExternalLink
                 href="https://www.shabbat.com"
-                target="_blank"
-                rel="noopener noreferrer"
+                label="Shabbat.com"
+                color="#C8A96E"
                 className="mt-2 block w-full text-center bg-[#C8A96E] text-white text-xs py-2 rounded-xl font-body font-medium active:scale-95 transition-transform"
               >
                 Find a Host on Shabbat.com
-              </a>
+              </SmartExternalLink>
             </div>
           ))}
         </div>

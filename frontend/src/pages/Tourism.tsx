@@ -1,9 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ReactNode } from 'react';
 import AppLayout from '@/components/layout/AppLayout';
 import { ArrowLeft, MapPin, Ticket, BookOpen, Bookmark, Headphones, Accessibility } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { api } from '@/lib/api';
 import { getTicketUrl, getSiteInfoUrl, getMapsDirectionsUrl } from '@/lib/discoveryLinks';
+import { canEmbedArbitraryUrl } from '@/lib/affiliateLinks';
+import ExternalWebview from '@/components/ExternalWebview';
 
 const categories = ['🏛️ Museums', '🏺 Archaeology', '⛪ Holy Sites', '🌊 Nature & Parks', '🎭 Entertainment'];
 const featuredCarousel = ['Western Wall, Jerusalem', 'Masada Fortress', 'Sea of Galilee', 'Bahai Gardens, Haifa', 'Dead Sea'];
@@ -27,11 +29,43 @@ interface TouristSite {
   unesco: boolean;
 }
 
+/**
+ * A ticket/info link that opens in the in-app webview when the destination
+ * allows itself to be embedded (most official site/park/museum pages do),
+ * or a real new tab — clearly marked "↗" — for the ones that don't (mainly
+ * Google-search fallbacks for sites without a confirmed official page).
+ */
+function SiteLink({
+  href,
+  onEmbed,
+  className,
+  children,
+}: {
+  href: string;
+  onEmbed: (url: string) => void;
+  className: string;
+  children: ReactNode;
+}) {
+  if (canEmbedArbitraryUrl(href)) {
+    return (
+      <button onClick={() => onEmbed(href)} className={className}>
+        {children}
+      </button>
+    );
+  }
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+      {children} ↗
+    </a>
+  );
+}
+
 export default function Tourism() {
   const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState(0);
   const [sites, setSites] = useState<TouristSite[]>([]);
   const [loading, setLoading] = useState(true);
+  const [webview, setWebview] = useState<{ url: string; label: string } | null>(null);
 
   useEffect(() => {
     loadSites();
@@ -137,22 +171,20 @@ export default function Tourism() {
                       )}
                     </div>
                     <div className="flex gap-2">
-                      <a
+                      <SiteLink
                         href={getTicketUrl(museum.name)}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        onEmbed={(url) => setWebview({ url, label: museum.name })}
                         className="flex-1 bg-[#003F87] text-white text-xs py-2 rounded-xl font-body font-medium flex items-center justify-center gap-1"
                       >
                         <Ticket size={12} /> Buy Tickets
-                      </a>
-                      <a
+                      </SiteLink>
+                      <SiteLink
                         href={getSiteInfoUrl(museum.name)}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        onEmbed={(url) => setWebview({ url, label: museum.name })}
                         className="flex-1 bg-[#003F87]/5 text-[#003F87] text-xs py-2 rounded-xl font-body font-medium flex items-center justify-center gap-1"
                       >
                         <BookOpen size={12} /> Learn More
-                      </a>
+                      </SiteLink>
                     </div>
                   </div>
                 ))}
@@ -244,30 +276,27 @@ export default function Tourism() {
                     </div>
 
                     <div className="flex gap-2">
-                      <a
+                      <SiteLink
                         href={getTicketUrl(park.name)}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        onEmbed={(url) => setWebview({ url, label: park.name })}
                         className="flex-1 bg-[#003F87] text-white text-[10px] py-2 rounded-xl font-body font-medium text-center"
                       >
                         🎟️ Buy Tickets
-                      </a>
-                      <a
+                      </SiteLink>
+                      <SiteLink
                         href={getTicketUrl(park.name)}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        onEmbed={(url) => setWebview({ url, label: park.name })}
                         className="flex-1 bg-[#003F87]/5 text-[#003F87] text-[10px] py-2 rounded-xl font-body font-medium text-center"
                       >
                         🗺️ Trails
-                      </a>
-                      <a
+                      </SiteLink>
+                      <SiteLink
                         href={getSiteInfoUrl(park.name)}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        onEmbed={(url) => setWebview({ url, label: park.name })}
                         className="flex-1 bg-[#003F87]/5 text-[#003F87] text-[10px] py-2 rounded-xl font-body font-medium text-center"
                       >
                         📚 History
-                      </a>
+                      </SiteLink>
                     </div>
                   </div>
                 ))}
@@ -293,14 +322,13 @@ export default function Tourism() {
                       {site.duration && <span>⏱️ {site.duration}</span>}
                       <span className="font-mono-data">₪{site.price}</span>
                     </div>
-                    <a
+                    <SiteLink
                       href={getSiteInfoUrl(site.name)}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      onEmbed={(url) => setWebview({ url, label: site.name })}
                       className="w-full bg-[#003F87]/5 text-[#003F87] text-xs py-2 rounded-xl font-body font-medium flex items-center justify-center gap-1"
                     >
                       <BookOpen size={12} /> Learn More
-                    </a>
+                    </SiteLink>
                   </div>
                 ))}
               </div>
@@ -316,6 +344,15 @@ export default function Tourism() {
           </>
         )}
       </div>
+
+      {webview && (
+        <ExternalWebview
+          url={webview.url}
+          label={webview.label}
+          color="#003F87"
+          onClose={() => setWebview(null)}
+        />
+      )}
     </AppLayout>
   );
 }
