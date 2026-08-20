@@ -42,6 +42,7 @@ interface TripadvisorDetail {
   review_count?: number | null;
   subratings?: TripadvisorSubrating[];
   url?: string | null;
+  website?: string | null;
   photos?: string[];
   reviews?: TripadvisorReview[];
 }
@@ -237,12 +238,12 @@ export default function RestaurantDetailModal({
               <MapPin size={12} /> Directions
             </a>
             <a
-              href={getMenuSearchUrl(restaurant.name, restaurant.city)}
+              href={detail?.website || getMenuSearchUrl(restaurant.name, restaurant.city)}
               target="_blank"
               rel="noopener noreferrer"
               className="flex-1 flex items-center justify-center gap-1 text-[11px] font-body font-medium text-[#003F87] py-2 rounded-lg bg-[#003F87]/5"
             >
-              <BookOpen size={12} /> Menu
+              <BookOpen size={12} /> {detail?.website ? 'Website' : 'Menu'}
             </a>
           </div>
 
