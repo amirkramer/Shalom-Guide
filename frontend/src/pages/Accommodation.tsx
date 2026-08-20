@@ -3,7 +3,7 @@ import AppLayout from '@/components/layout/AppLayout';
 import { ArrowLeft, Search, Star, ExternalLink, MapPin, Wifi, Waves, Dumbbell, UtensilsCrossed } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { api } from '@/lib/api';
-import { getProviderUrl, isProviderTracked, PROVIDER_LABELS, PROVIDER_COLORS, type HotelProvider } from '@/lib/affiliateLinks';
+import { getProviderUrl, isProviderTracked, canEmbedInIframe, PROVIDER_LABELS, PROVIDER_COLORS, type HotelProvider } from '@/lib/affiliateLinks';
 
 const providers: HotelProvider[] = ['booking', 'expedia', 'trivago'];
 
@@ -66,13 +66,25 @@ export default function Accommodation() {
     return true;
   });
 
+  // Booking.com renders fine in the in-app webview below; Expedia and trivago
+  // (verified live) refuse to be framed and would just show a blank screen,
+  // so those open a real browser tab instead — worse than in-app, but far
+  // better than a dead-looking blank modal.
   const openBooking = (bookingId: string, provider: HotelProvider = 'booking') => {
+    if (!canEmbedInIframe(provider)) {
+      window.open(getProviderUrl(provider, bookingId), '_blank', 'noopener,noreferrer');
+      return;
+    }
     setSelectedHotel(bookingId);
     setActiveProvider(provider);
     setShowBookingModal(true);
   };
 
   const openBookingSearch = (city: string, provider: HotelProvider = 'booking') => {
+    if (!canEmbedInIframe(provider)) {
+      window.open(getProviderUrl(provider, city), '_blank', 'noopener,noreferrer');
+      return;
+    }
     setSelectedHotel(city);
     setActiveProvider(provider);
     setShowBookingModal(true);
@@ -320,16 +332,26 @@ export default function Accommodation() {
             />
           </div>
 
-          <div className="px-4 py-2 border-t border-[#D4C5A9]/20 bg-white flex items-center justify-between">
-            <p className="text-[8px] font-body text-[#1A1A2E]/40">
+          <div className="px-4 py-2 border-t border-[#D4C5A9]/20 bg-white flex items-center justify-between gap-2">
+            <p className="text-[8px] font-body text-[#1A1A2E]/40 flex-shrink-0">
               Shalom Guide • {PROVIDER_LABELS[activeProvider]} affiliate • Secure checkout
             </p>
-            <button
-              onClick={() => setShowBookingModal(false)}
-              className="text-[10px] font-body text-[#003F87] font-medium"
-            >
-              ← Back to app
-            </button>
+            <div className="flex items-center gap-3 flex-shrink-0">
+              <a
+                href={getProviderUrl(activeProvider, selectedHotel)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[9px] font-body text-[#1A1A2E]/40 underline"
+              >
+                Not loading? Open in browser
+              </a>
+              <button
+                onClick={() => setShowBookingModal(false)}
+                className="text-[10px] font-body text-[#003F87] font-medium"
+              >
+                ← Back to app
+              </button>
+            </div>
           </div>
         </div>
       )}

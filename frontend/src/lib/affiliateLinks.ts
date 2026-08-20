@@ -66,6 +66,31 @@ export function getProviderUrl(provider: HotelProvider, hotelIdOrCity: string): 
   }
 }
 
+/**
+ * Whether a destination's own site allows itself to be shown in an iframe
+ * (checked live: booking.com renders normally embedded; expedia.com and
+ * trivago.com both send security headers that make the browser refuse and
+ * show a blank frame instead — confirmed by actually opening each one in the
+ * in-app webview, not just reading docs). Sites we couldn't confirm either
+ * way default to `false` so we never trap a user on a blank screen — they get
+ * the real external tab instead, which always works.
+ *
+ * If Expedia/trivago/OpenTable change their embedding policy later, flipping
+ * these to `true` is all that's needed to try the in-app webview for them too.
+ */
+const IFRAME_EMBEDDABLE: Record<string, boolean> = {
+  booking: true,
+  expedia: false,
+  trivago: false,
+  discovercars: true, // CSP frame-ancestors on discovercars.com permits any origin
+  ontopo: true, // no framing-restriction headers found
+  opentable: false, // unconfirmed — default to a real new tab
+};
+
+export function canEmbedInIframe(destination: keyof typeof IFRAME_EMBEDDABLE): boolean {
+  return IFRAME_EMBEDDABLE[destination] ?? false;
+}
+
 export const PROVIDER_LABELS: Record<HotelProvider, string> = {
   booking: 'Booking.com',
   expedia: 'Expedia',

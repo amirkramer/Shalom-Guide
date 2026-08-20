@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { api } from '@/lib/api';
 import { getMoovitUrl, getGettAppLinks, getTransitDirectionsUrl } from '@/lib/discoveryLinks';
 import { getDiscoverCarsUrl, isDiscoverCarsTracked } from '@/lib/affiliateLinks';
+import ExternalWebview from '@/components/ExternalWebview';
 
 const tabs = ['🚌 Bus & Train', '🗺️ Live Map', '🚕 Taxi', '🚗 Car Rental'];
 
@@ -49,6 +50,7 @@ interface TaxiInfo {
 export default function Transport() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState(0);
+  const [showDiscoverCars, setShowDiscoverCars] = useState(false);
   const [origin, setOrigin] = useState('');
   const [destination, setDestination] = useState('');
   const [selectedCity, setSelectedCity] = useState('Tel Aviv');
@@ -409,15 +411,13 @@ export default function Transport() {
               <p className="text-white/80 text-xs font-body mb-3">
                 Compare prices across every rental company in Israel in one search
               </p>
-              <a
-                href={getDiscoverCarsUrl()}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={() => setShowDiscoverCars(true)}
                 className="w-full bg-white text-[#003F87] py-2.5 rounded-xl text-sm font-body font-semibold flex items-center justify-center gap-2 active:scale-95 transition-transform"
               >
                 <ExternalLink size={14} />
                 Search on Discover Cars
-              </a>
+              </button>
             </div>
 
             <div className="bg-white rounded-2xl p-4 border border-[#D4C5A9]/20 shadow-sm">
@@ -470,6 +470,15 @@ export default function Transport() {
           </div>
         )}
       </div>
+
+      {showDiscoverCars && (
+        <ExternalWebview
+          url={getDiscoverCarsUrl()}
+          label="Discover Cars"
+          color="#003F87"
+          onClose={() => setShowDiscoverCars(false)}
+        />
+      )}
     </AppLayout>
   );
 }

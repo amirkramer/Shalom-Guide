@@ -11,6 +11,7 @@ import {
   getOntopoUrl,
 } from '@/lib/affiliateLinks';
 import RestaurantDetailModal from '@/components/RestaurantDetailModal';
+import ExternalWebview from '@/components/ExternalWebview';
 
 const dietaryFilters = ['Kosher ✡️', 'Mehadrin', 'Badatz', 'Halal ☪️', 'Vegan 🌱', 'Vegetarian', 'Gluten-Free'];
 const typeFilters = ['Israeli', 'Arab', 'Mediterranean', 'Yemenite', 'Ethiopian', 'Fusion', 'Street Food'];
@@ -63,6 +64,7 @@ export default function Gastronomy() {
   const [searchQuery, setSearchQuery] = useState('');
   const [mapCity, setMapCity] = useState('Tel Aviv');
   const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
+  const [ontopoCity, setOntopoCity] = useState<string | null>(null);
 
   useEffect(() => {
     loadData();
@@ -407,14 +409,12 @@ export default function Gastronomy() {
                   </div>
 
                   <div className="flex gap-2 mt-2">
-                    <a
-                      href={getOntopoUrl(restaurant.city)}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <button
+                      onClick={(e) => { e.stopPropagation(); setOntopoCity(restaurant.city); }}
                       className="flex-1 flex items-center justify-center gap-1 text-[10px] font-body font-semibold text-white py-1.5 rounded-lg bg-[#4A7C59]"
                     >
                       Reserve on Ontopo
-                    </a>
+                    </button>
                     {isOpenTableAvailable(restaurant.city) && (
                       <a
                         href={getOpenTableUrl()}
@@ -455,6 +455,15 @@ export default function Gastronomy() {
         <RestaurantDetailModal
           restaurant={selectedRestaurant}
           onClose={() => setSelectedRestaurant(null)}
+        />
+      )}
+
+      {ontopoCity && (
+        <ExternalWebview
+          url={getOntopoUrl(ontopoCity)}
+          label="Ontopo"
+          color="#4A7C59"
+          onClose={() => setOntopoCity(null)}
         />
       )}
     </AppLayout>

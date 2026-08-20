@@ -3,6 +3,7 @@ import { X, Phone, MapPin, BookOpen, Star } from 'lucide-react';
 import { api } from '@/lib/api';
 import { getMapsDirectionsUrl, getMenuSearchUrl } from '@/lib/discoveryLinks';
 import { getOpenTableUrl, isOpenTableAvailable, getOntopoUrl } from '@/lib/affiliateLinks';
+import ExternalWebview from '@/components/ExternalWebview';
 
 interface RestaurantSummary {
   id: number;
@@ -62,6 +63,7 @@ export default function RestaurantDetailModal({
 }) {
   const [detail, setDetail] = useState<TripadvisorDetail | null>(null);
   const [loading, setLoading] = useState(true);
+  const [showOntopo, setShowOntopo] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -247,14 +249,12 @@ export default function RestaurantDetailModal({
           {address && <p className="text-[10px] font-body text-[#1A1A2E]/40 mt-2 text-center">{address}</p>}
 
           <div className="flex gap-2 mt-2">
-            <a
-              href={getOntopoUrl(restaurant.city)}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={() => setShowOntopo(true)}
               className="flex-1 flex items-center justify-center gap-1 text-[11px] font-body font-semibold text-white py-2 rounded-lg bg-[#4A7C59]"
             >
               Reserve on Ontopo
-            </a>
+            </button>
             {isOpenTableAvailable(restaurant.city) && (
               <a
                 href={getOpenTableUrl()}
@@ -268,6 +268,15 @@ export default function RestaurantDetailModal({
           </div>
         </div>
       </div>
+
+      {showOntopo && (
+        <ExternalWebview
+          url={getOntopoUrl(restaurant.city)}
+          label="Ontopo"
+          color="#4A7C59"
+          onClose={() => setShowOntopo(false)}
+        />
+      )}
     </div>
   );
 }
