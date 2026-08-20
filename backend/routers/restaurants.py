@@ -10,7 +10,12 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from core.database import get_db
 from services.restaurants import RestaurantsService
-from services.tripadvisor import refresh_restaurant_rating
+from services.tripadvisor import (
+    get_location_detail,
+    get_location_photos,
+    get_location_reviews,
+    refresh_restaurant_rating,
+)
 
 # Set up logging
 logger = logging.getLogger(__name__)
@@ -240,6 +245,82 @@ async def get_restaurants(
     except Exception as e:
         logger.error(f"Error fetching restaurants {id}: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
+
+
+@router.get("/{id}/tripadvisor")
+async def get_restaurant_tripadvisor_detail(
+    id: int,
+    db: AsyncSession = Depends(get_db),
+):
+    """Rich Tripadvisor detail for the in-app restaurant detail view: real
+    address/phone/opening hours, subratings, a few photos, and a few review
+    snippets — so users can see this in Shalom Guide itself instead of
+    bouncing to tripadvisor.com just to check the address or read a review.
+
+    Called on-demand (only when a user opens a restaurant's detail card), not
+    on every list load, so it stays well within the Tripadvisor free call
+    budget even though it makes up to 3 API calls.
+    """
+    service = RestaurantsService(db)
+    restaurant = await service.get_by_id(id)
+    if not restaurant:
+        raise HTTPException(status_code=404, detail="Restaurants not found")
+
+    if not restaurant.tripadvisor_location_id:
+        # Not resolved yet (e.g. stale-refresh pass hasn't run) — try once now.
+        if await refresh_restaurant_rating(restaurant):
+            await db.commit()
+
+    if not restaurant.tripadvisor_location_id:
+        return {"available": False}
+
+    location_id = restaurant.tripadvisor_location_id
+    detail, reviews, photos = None, [], []
+    try:
+        detail = await get_location_detail(location_id)
+        reviews = await get_location_reviews(location_id, size=3)
+        photos = await get_location_photos(location_id, size=4)
+    except Exception as e:
+        logger.warning(f"Tripadvisor detail fetch failed for restaurant {id}: {e}")
+
+    if not detail:
+        return {"available": False}
+
+    address = (detail.get("addresses") or [{}])[0]
+    phones = detail.get("phone_numbers") or []
+
+    def _text(entries, key="value"):
+        for e in entries or []:
+            if e.get("primary"):
+                return e.get(key)
+        return (entries or [{}])[0].get(key) if entries else None
+
+    return {
+        "available": True,
+        "name": (detail.get("names") or [{}])[0].get("value"),
+        "address": address.get("formatted"),
+        "phone": phones[0].get("value") if phones else None,
+        "coordinates": detail.get("coordinates"),
+        "opening_hours": (detail.get("opening_hours") or {}).get("formatted"),
+        "price_level": detail.get("price_level"),
+        "rating": (detail.get("traveler_ratings") or {}).get("overall", {}).get("rating"),
+        "review_count": (detail.get("traveler_ratings") or {}).get("overall", {}).get("count"),
+        "subratings": (detail.get("traveler_ratings") or {}).get("subratings", []),
+        "url": (detail.get("urls") or {}).get("tripadvisor", {}).get("main"),
+        "photos": [p.get("photo", {}).get("original_size_url") for p in photos if p.get("photo")],
+        "reviews": [
+            {
+                "rating": r.get("rating"),
+                "title": _text(r.get("title")),
+                "text": _text(r.get("text")),
+                "author": (r.get("user") or {}).get("username"),
+                "author_location": (r.get("user") or {}).get("geo"),
+                "date": r.get("travel_date"),
+                "url": r.get("url"),
+            }
+            for r in reviews
+        ],
+    }
 
 
 @router.post("", response_model=RestaurantsResponse, status_code=201)

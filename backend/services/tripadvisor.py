@@ -73,6 +73,64 @@ def is_stale(updated_at: Optional[datetime]) -> bool:
     return datetime.now(timezone.utc) - updated_at > CACHE_TTL
 
 
+async def get_location_detail(location_id: int) -> Optional[dict]:
+    """Full detail for one location: real address, phone, coordinates,
+    opening hours per day, and a price-level label. Used to power the in-app
+    restaurant detail view so users don't have to leave Shalom Guide to see
+    the address/hours — only "see all reviews" links out.
+    """
+    if not getattr(settings, "tripadvisor_api_key", None):
+        return None
+    try:
+        async with httpx.AsyncClient(timeout=15.0) as client:
+            response = await client.get(f"{BASE_URL}/locations/{location_id}", headers=_headers())
+            response.raise_for_status()
+            return response.json()
+    except Exception as e:
+        logger.warning(f"Tripadvisor location detail failed for id={location_id}: {e}")
+        return None
+
+
+async def get_location_reviews(location_id: int, size: int = 3) -> list[dict]:
+    """A handful of real review snippets (title/text/rating/author/date) so
+    the app can show genuine traveler feedback in-app, with a "read more on
+    Tripadvisor" link for the full list rather than sending users out just to
+    see what people said.
+    """
+    if not getattr(settings, "tripadvisor_api_key", None):
+        return []
+    try:
+        async with httpx.AsyncClient(timeout=15.0) as client:
+            response = await client.get(
+                f"{BASE_URL}/locations/{location_id}/reviews",
+                headers=_headers(),
+                params={"size": size},
+            )
+            response.raise_for_status()
+            return response.json().get("data") or []
+    except Exception as e:
+        logger.warning(f"Tripadvisor reviews failed for id={location_id}: {e}")
+        return []
+
+
+async def get_location_photos(location_id: int, size: int = 4) -> list[dict]:
+    """A few real photos of the place, for the in-app detail view."""
+    if not getattr(settings, "tripadvisor_api_key", None):
+        return []
+    try:
+        async with httpx.AsyncClient(timeout=15.0) as client:
+            response = await client.get(
+                f"{BASE_URL}/locations/{location_id}/photos",
+                headers=_headers(),
+                params={"size": size},
+            )
+            response.raise_for_status()
+            return response.json().get("data") or []
+    except Exception as e:
+        logger.warning(f"Tripadvisor photos failed for id={location_id}: {e}")
+        return []
+
+
 async def refresh_restaurant_rating(restaurant) -> bool:
     """Resolve and refresh a restaurant's cached Tripadvisor data in place.
 

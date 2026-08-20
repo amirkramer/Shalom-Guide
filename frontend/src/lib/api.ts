@@ -1,10 +1,22 @@
+import axios from 'axios';
 import { createClient } from '@metagptx/web-sdk';
+import { getAPIBaseURL } from '@/lib/config';
 
 export const client = createClient();
 
 // Public data API calls using entities (create_only=false tables)
 export const api = {
   // Restaurants
+  async getRestaurantTripadvisorDetail(id: number) {
+    try {
+      const response = await axios.get(`${getAPIBaseURL()}/api/v1/entities/restaurants/${id}/tripadvisor`);
+      return response.data;
+    } catch (error) {
+      console.error('Failed to fetch Tripadvisor detail:', error);
+      return { available: false };
+    }
+  },
+
   async getRestaurants(filters?: { city?: string; cuisine?: string; kids_menu?: boolean; pet_friendly?: boolean; shabbat_open?: boolean }) {
     try {
       const query: Record<string, unknown> = {};

@@ -10,6 +10,7 @@ import {
   isOpenTableTracked,
   getOntopoUrl,
 } from '@/lib/affiliateLinks';
+import RestaurantDetailModal from '@/components/RestaurantDetailModal';
 
 const dietaryFilters = ['Kosher ✡️', 'Mehadrin', 'Badatz', 'Halal ☪️', 'Vegan 🌱', 'Vegetarian', 'Gluten-Free'];
 const typeFilters = ['Israeli', 'Arab', 'Mediterranean', 'Yemenite', 'Ethiopian', 'Fusion', 'Street Food'];
@@ -61,6 +62,7 @@ export default function Gastronomy() {
   const [specialFilters, setSpecialFilters] = useState<SpecialFilter[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [mapCity, setMapCity] = useState('Tel Aviv');
+  const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
 
   useEffect(() => {
     loadData();
@@ -311,7 +313,7 @@ export default function Gastronomy() {
             <div className="space-y-3">
               {filteredRestaurants.map((restaurant) => (
                 <div key={restaurant.id} className="bg-white rounded-2xl p-4 border border-[#D4C5A9]/20 shadow-sm star-pattern">
-                  <div className="flex gap-3">
+                  <div className="flex gap-3 cursor-pointer" onClick={() => setSelectedRestaurant(restaurant)}>
                     <div className="w-20 h-20 bg-gradient-to-br from-[#C8A96E]/20 to-[#003F87]/10 rounded-xl flex-shrink-0" />
                     <div className="flex-1 min-w-0">
                       <div className="flex items-start justify-between">
@@ -448,6 +450,13 @@ export default function Gastronomy() {
           </>
         )}
       </div>
+
+      {selectedRestaurant && (
+        <RestaurantDetailModal
+          restaurant={selectedRestaurant}
+          onClose={() => setSelectedRestaurant(null)}
+        />
+      )}
     </AppLayout>
   );
 }
