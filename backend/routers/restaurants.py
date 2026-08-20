@@ -93,6 +93,7 @@ class RestaurantsResponse(BaseModel):
     tripadvisor_rating: Optional[float] = None
     tripadvisor_review_count: Optional[int] = None
     tripadvisor_url: Optional[str] = None
+    tripadvisor_website: Optional[str] = None
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
 

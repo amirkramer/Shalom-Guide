@@ -169,9 +169,14 @@ async def refresh_restaurant_rating(restaurant) -> bool:
         return False
 
     ratings = match.get("traveler_ratings", {}).get("overall") or {}
-    restaurant.tripadvisor_location_id = match.get("id")
+    location_id = match.get("id")
+    restaurant.tripadvisor_location_id = location_id
     restaurant.tripadvisor_rating = ratings.get("rating")
     restaurant.tripadvisor_review_count = ratings.get("count")
     restaurant.tripadvisor_url = match.get("urls", {}).get("tripadvisor", {}).get("main")
+    # The search response already includes the official site inline, so this
+    # costs no extra API call. INSTAGRAM_OVERRIDES wins where we've verified a
+    # better (more actively used) profile than what Tripadvisor has on file.
+    restaurant.tripadvisor_website = INSTAGRAM_OVERRIDES.get(location_id) or match.get("urls", {}).get("official")
     restaurant.tripadvisor_updated_at = datetime.now(timezone.utc)
     return True

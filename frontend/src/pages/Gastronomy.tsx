@@ -9,6 +9,7 @@ import {
   isOpenTableAvailable,
   isOpenTableTracked,
   getOntopoUrl,
+  canEmbedArbitraryUrl,
 } from '@/lib/affiliateLinks';
 import RestaurantDetailModal from '@/components/RestaurantDetailModal';
 import ExternalWebview from '@/components/ExternalWebview';
@@ -40,6 +41,7 @@ interface Restaurant {
   tripadvisor_rating?: number | null;
   tripadvisor_review_count?: number | null;
   tripadvisor_url?: string | null;
+  tripadvisor_website?: string | null;
 }
 
 interface FeaturedRestaurant {
@@ -65,6 +67,7 @@ export default function Gastronomy() {
   const [mapCity, setMapCity] = useState('Tel Aviv');
   const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
   const [ontopoCity, setOntopoCity] = useState<string | null>(null);
+  const [websiteToShow, setWebsiteToShow] = useState<{ url: string; label: string } | null>(null);
 
   useEffect(() => {
     loadData();
@@ -398,14 +401,24 @@ export default function Gastronomy() {
                     >
                       <MapPin size={10} /> Directions
                     </a>
-                    <a
-                      href={getMenuSearchUrl(restaurant.name, restaurant.city)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 flex items-center justify-center gap-1 text-[10px] font-body font-medium text-[#003F87] py-1.5 rounded-lg bg-[#003F87]/5"
-                    >
-                      <BookOpen size={10} /> Menu
-                    </a>
+                    {restaurant.tripadvisor_website && canEmbedArbitraryUrl(restaurant.tripadvisor_website) ? (
+                      <button
+                        onClick={(e) => { e.stopPropagation(); setWebsiteToShow({ url: restaurant.tripadvisor_website!, label: restaurant.name }); }}
+                        className="flex-1 flex items-center justify-center gap-1 text-[10px] font-body font-medium text-[#003F87] py-1.5 rounded-lg bg-[#003F87]/5"
+                      >
+                        <BookOpen size={10} /> Website
+                      </button>
+                    ) : (
+                      <a
+                        href={restaurant.tripadvisor_website || getMenuSearchUrl(restaurant.name, restaurant.city)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="flex-1 flex items-center justify-center gap-1 text-[10px] font-body font-medium text-[#003F87] py-1.5 rounded-lg bg-[#003F87]/5"
+                      >
+                        <BookOpen size={10} /> {restaurant.tripadvisor_website ? 'Website ↗' : 'Menu ↗'}
+                      </a>
+                    )}
                   </div>
 
                   <div className="flex gap-2 mt-2">
@@ -464,6 +477,15 @@ export default function Gastronomy() {
           label="Ontopo"
           color="#4A7C59"
           onClose={() => setOntopoCity(null)}
+        />
+      )}
+
+      {websiteToShow && (
+        <ExternalWebview
+          url={websiteToShow.url}
+          label={websiteToShow.label}
+          color="#003F87"
+          onClose={() => setWebsiteToShow(null)}
         />
       )}
     </AppLayout>

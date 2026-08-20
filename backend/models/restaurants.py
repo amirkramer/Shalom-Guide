@@ -32,6 +32,7 @@ class Restaurants(Base):
     tripadvisor_rating = Column(Float, nullable=True)
     tripadvisor_review_count = Column(Integer, nullable=True)
     tripadvisor_url = Column(String, nullable=True)
+    tripadvisor_website = Column(String, nullable=True)
     tripadvisor_updated_at = Column(DateTime(timezone=True), nullable=True)
     created_at = Column(DateTime(timezone=True), default=datetime.now)
     updated_at = Column(DateTime(timezone=True), default=datetime.now, onupdate=datetime.now)
