@@ -29,6 +29,28 @@ def _headers() -> dict:
     return {"X-API-Key": settings.tripadvisor_api_key}
 
 
+# Tripadvisor's own "official" website field points at a Facebook page for
+# some restaurants — Facebook (like Instagram, same company) refuses to be
+# framed, so that link always has to leave the app anyway. Where Instagram is
+# the restaurant's more actively-used profile (verified individually via live
+# search, not guessed), swap in the real handle instead — same "must leave
+# the app" outcome (Instagram blocks framing too), but more useful content.
+# Keyed by Tripadvisor location_id (stable), not restaurant name.
+#
+# Only restaurants confirmed with a real, verified handle are listed here —
+# several others on Facebook (Abu Hassan, Azura, Yakuta, Ni-Shi) had no
+# confirmable official Instagram found, so they're left as-is rather than
+# guessed at.
+INSTAGRAM_OVERRIDES: dict[int, str] = {
+    12451881: "https://www.instagram.com/miznontlv/",  # Miznon
+    2453575: "https://www.instagram.com/dr_shakshuka/",  # Dr. Shakshuka
+    7284767: "https://www.instagram.com/hummus_shlomo_and_doron/",  # Hummus Shlomo and Doron
+    6813419: "https://www.instagram.com/aricha.sabich/",  # Aricha Sabich
+    5926153: "https://www.instagram.com/herbertsamuel_rest/",  # Herbert Samuel Herzliya
+    7251187: "https://www.instagram.com/limanibistro_caesarea/",  # Limani Bistro
+}
+
+
 async def search_restaurant(name: str, city: str) -> Optional[dict]:
     """Find the best-matching Tripadvisor location for a restaurant name/city.
 

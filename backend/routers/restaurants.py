@@ -11,6 +11,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from core.database import get_db
 from services.restaurants import RestaurantsService
 from services.tripadvisor import (
+    INSTAGRAM_OVERRIDES,
     get_location_detail,
     get_location_photos,
     get_location_reviews,
@@ -307,7 +308,7 @@ async def get_restaurant_tripadvisor_detail(
         "review_count": (detail.get("traveler_ratings") or {}).get("overall", {}).get("count"),
         "subratings": (detail.get("traveler_ratings") or {}).get("subratings", []),
         "url": (detail.get("urls") or {}).get("tripadvisor", {}).get("main"),
-        "website": (detail.get("urls") or {}).get("official"),
+        "website": INSTAGRAM_OVERRIDES.get(location_id) or (detail.get("urls") or {}).get("official"),
         "photos": [p.get("photo", {}).get("original_size_url") for p in photos if p.get("photo")],
         "reviews": [
             {
