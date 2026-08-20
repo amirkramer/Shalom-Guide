@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { X, Phone, MapPin, BookOpen, Star } from 'lucide-react';
 import { api } from '@/lib/api';
 import { getMapsDirectionsUrl, getMenuSearchUrl } from '@/lib/discoveryLinks';
-import { getOpenTableUrl, isOpenTableAvailable, getOntopoUrl } from '@/lib/affiliateLinks';
+import { getOpenTableUrl, isOpenTableAvailable, getOntopoUrl, canEmbedArbitraryUrl } from '@/lib/affiliateLinks';
 import ExternalWebview from '@/components/ExternalWebview';
 
 interface RestaurantSummary {
@@ -65,6 +65,7 @@ export default function RestaurantDetailModal({
   const [detail, setDetail] = useState<TripadvisorDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [showOntopo, setShowOntopo] = useState(false);
+  const [showWebsite, setShowWebsite] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -237,14 +238,23 @@ export default function RestaurantDetailModal({
             >
               <MapPin size={12} /> Directions
             </a>
-            <a
-              href={detail?.website || getMenuSearchUrl(restaurant.name, restaurant.city)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center gap-1 text-[11px] font-body font-medium text-[#003F87] py-2 rounded-lg bg-[#003F87]/5"
-            >
-              <BookOpen size={12} /> {detail?.website ? 'Website' : 'Menu'}
-            </a>
+            {detail?.website && canEmbedArbitraryUrl(detail.website) ? (
+              <button
+                onClick={() => setShowWebsite(true)}
+                className="flex-1 flex items-center justify-center gap-1 text-[11px] font-body font-medium text-[#003F87] py-2 rounded-lg bg-[#003F87]/5"
+              >
+                <BookOpen size={12} /> Website
+              </button>
+            ) : (
+              <a
+                href={detail?.website || getMenuSearchUrl(restaurant.name, restaurant.city)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center gap-1 text-[11px] font-body font-medium text-[#003F87] py-2 rounded-lg bg-[#003F87]/5"
+              >
+                <BookOpen size={12} /> {detail?.website ? 'Website ↗' : 'Menu ↗'}
+              </a>
+            )}
           </div>
 
           {address && <p className="text-[10px] font-body text-[#1A1A2E]/40 mt-2 text-center">{address}</p>}
@@ -276,6 +286,15 @@ export default function RestaurantDetailModal({
           label="Ontopo"
           color="#4A7C59"
           onClose={() => setShowOntopo(false)}
+        />
+      )}
+
+      {showWebsite && detail?.website && (
+        <ExternalWebview
+          url={detail.website}
+          label={restaurant.name}
+          color="#003F87"
+          onClose={() => setShowWebsite(false)}
         />
       )}
     </div>

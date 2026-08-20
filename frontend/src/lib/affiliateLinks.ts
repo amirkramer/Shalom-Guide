@@ -91,6 +91,37 @@ export function canEmbedInIframe(destination: keyof typeof IFRAME_EMBEDDABLE): b
   return IFRAME_EMBEDDABLE[destination] ?? false;
 }
 
+/**
+ * For arbitrary third-party URLs (a restaurant's own website, pulled from
+ * Tripadvisor — could be anything) rather than our fixed list of known
+ * providers above: major platforms are confirmed (via response headers) to
+ * always refuse framing — Google search sends `X-Frame-Options: SAMEORIGIN`,
+ * Facebook/Instagram send `frame-ancestors 'self'` — so trying to embed a
+ * link on one of these domains would just be another blank screen like
+ * Expedia/trivago were before that got fixed. Independent small-business
+ * sites (the common case for a restaurant's own site) essentially never set
+ * these headers, so those are worth trying in the in-app webview.
+ */
+const KNOWN_FRAME_BLOCKING_HOSTS = [
+  'google.com',
+  'facebook.com',
+  'fb.com',
+  'instagram.com',
+  'twitter.com',
+  'x.com',
+  'tiktok.com',
+  'linkedin.com',
+];
+
+export function canEmbedArbitraryUrl(url: string): boolean {
+  try {
+    const host = new URL(url).hostname.replace(/^www\.|^m\./, '');
+    return !KNOWN_FRAME_BLOCKING_HOSTS.some((blocked) => host === blocked || host.endsWith(`.${blocked}`));
+  } catch {
+    return false;
+  }
+}
+
 export const PROVIDER_LABELS: Record<HotelProvider, string> = {
   booking: 'Booking.com',
   expedia: 'Expedia',
